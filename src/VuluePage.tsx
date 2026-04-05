@@ -219,11 +219,7 @@ export default function VuluePage() {
       </div>
 
       {/* Divider line */}
-      <div style={{ position: 'absolute', height: 0, left: 0, top: 397, width: 430 }}>
-        <div style={{ position: 'absolute', inset: '-0.4px 0 0 0' }}>
-          <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line160} />
-        </div>
-      </div>
+      <div style={{ position: 'absolute', height: 1, left: 0, top: 397, width: 430, background: '#22282c', opacity: 0.15 }} />
 
       {/* Clock icon beside bell — sits left of bell (bell at x=363) */}
       <div style={{ position: 'absolute', left: 320, top: 42, width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
