@@ -656,12 +656,13 @@ export default function VuluePage() {
         <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: 382, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 706, width: 391, overflow: 'hidden' }} />
         {/* Title */}
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 37, top: 730, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
-        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.1, left: 37, top: 748, color: '#22282c', fontSize: 16, margin: 0 }}>Crypto Events Contracts</p>
-        {/* Group4984 icon beside sub-account name */}
-        <div style={{ position: 'absolute', height: 9.799, left: 38, top: 753, width: 17.57 }}>
-          <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
-            <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+        <div style={{ position: 'absolute', left: 37, top: 748, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
+            <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
+              <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+            </div>
           </div>
+          <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.1, color: '#22282c', fontSize: 16, margin: 0 }}>Crypto Events Contracts</p>
         </div>
         {/* Holdings Floating PnL */}
         <div style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', left: 345.5, top: 734, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: 85, letterSpacing: '-0.408px' }}>
@@ -748,11 +749,13 @@ export default function VuluePage() {
         {/* ── Card 2: Economics Events Contracts (collapsed, top:1097, h:190) ── */}
         <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1097, width: 391 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: 1108, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
-        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.1, left: 31, top: 1126, color: '#22282c', fontSize: 16, margin: 0 }}>Economics Events Contracts</p>
-        <div style={{ position: 'absolute', height: 9.799, left: 33.21, top: 1131.1, width: 17.57 }}>
-          <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
-            <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+        <div style={{ position: 'absolute', left: 31, top: 1126, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
+            <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
+              <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+            </div>
           </div>
+          <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.1, color: '#22282c', fontSize: 16, margin: 0 }}>Economics Events Contracts</p>
         </div>
         <div style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', left: 339.5, top: 1112, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: 85, letterSpacing: '-0.408px' }}>
           <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 10, color: '#525d7a', lineHeight: '22px' }}>Holdings Floating PnL</span>
@@ -771,11 +774,13 @@ export default function VuluePage() {
         {/* ── Card 3: Financials Events Contracts (collapsed, top:1294, h:190) ── */}
         <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1294, width: 391 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: 1305, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
-        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.1, left: 31, top: 1323, color: '#22282c', fontSize: 16, margin: 0 }}>Financials Events Contracts</p>
-        <div style={{ position: 'absolute', height: 9.799, left: 33, top: 1328, width: 17.57 }}>
-          <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
-            <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+        <div style={{ position: 'absolute', left: 31, top: 1323, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
+            <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
+              <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+            </div>
           </div>
+          <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.1, color: '#22282c', fontSize: 16, margin: 0 }}>Financials Events Contracts</p>
         </div>
         <div style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', left: 339.5, top: 1309, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: 85, letterSpacing: '-0.408px' }}>
           <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 10, color: '#525d7a', lineHeight: '22px' }}>Holdings Floating PnL</span>
@@ -794,11 +799,13 @@ export default function VuluePage() {
         {/* ── Card 4: IPOs Events Contracts (collapsed, top:1492, h:190) ── */}
         <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1492, width: 391 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: 1503, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
-        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.1, left: 31, top: 1521, color: '#22282c', fontSize: 16, margin: 0 }}>IPOs Events Contracts</p>
-        <div style={{ position: 'absolute', height: 9.799, left: 33, top: 1526, width: 17.57 }}>
-          <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
-            <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+        <div style={{ position: 'absolute', left: 31, top: 1521, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
+            <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
+              <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+            </div>
           </div>
+          <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.1, color: '#22282c', fontSize: 16, margin: 0 }}>IPOs Events Contracts</p>
         </div>
         <div style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', left: 339.5, top: 1507, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: 85, letterSpacing: '-0.408px' }}>
           <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 10, color: '#525d7a', lineHeight: '22px' }}>Holdings Floating PnL</span>
