@@ -26,7 +26,7 @@ export default function VuluePage() {
   const [activeTab, setActiveTab] = useState<Tab>('FX');
   const [cardExpanded, setCardExpanded] = useState(true);
   const data = tabData[activeTab];
-  const yOffset = cardExpanded ? 0 : -192;
+  const yOffset = cardExpanded ? 0 : -157;
   return (
     <div style={{ background: '#eef0f1', position: 'relative', width: '100%', height: '100%' }}>
 
@@ -360,7 +360,7 @@ export default function VuluePage() {
       {/* ── Portfolio Sub-Account Card (Group 4970) ── */}
       <div style={{ position: 'absolute', display: 'contents', left: 19, top: 713 }}>
         {/* Card background */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', height: cardExpanded ? 382 : 190, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 713, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 713, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }} />
 
         {/* Title — top: 737 */}
         <div style={{ position: 'absolute', left: 37, top: 737, width: 229 }}>
@@ -393,7 +393,7 @@ export default function VuluePage() {
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
           </div>
         ) : (
-          <div onClick={() => setCardExpanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 26, borderRadius: 15, top: 856, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => setCardExpanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 26, borderRadius: 15, top: 869, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
           </div>
         )}
