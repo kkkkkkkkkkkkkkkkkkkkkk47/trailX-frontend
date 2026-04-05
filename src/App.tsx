@@ -29,6 +29,6 @@ export default function App() {
   const [page, setPage] = useState<'login' | 'main'>('login');
 
   return page === 'login'
-    ? <ScaledPage height={900}><LoginPage onLogin={() => setPage('main')} /></ScaledPage>
+    ? <ScaledPage height={849}><LoginPage onLogin={() => setPage('main')} /></ScaledPage>
     : <ScaledPage height={DESIGN_HEIGHT}><VuluePage /></ScaledPage>;
 }
