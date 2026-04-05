@@ -50,6 +50,17 @@ export default function VuluePage() {
     { name: 'Frankfurt Exotic Stocks',logo: FrankfurtStocks },
   ];
   const currentEquity = equitySubAccounts[equityIndex];
+  const [equityCfdIndex, setEquityCfdIndex] = useState(0);
+  const equityCfdSubAccounts = [
+    { name: 'US Stock CFDs',              logo: UsStocks },
+    { name: 'LSE Stock CFDs',             logo: LseStocks },
+    { name: 'EuroNext Stock CFDs',        logo: EuronextStocks },
+    { name: 'JPX Stock CFDs',             logo: JpxStocks },
+    { name: 'Hong Kong Stock CFDs',       logo: HkStocks },
+    { name: 'Poland Stock CFDs',          logo: PolandStocks },
+    { name: 'Frankfurt Exotic Stock CFDs',logo: FrankfurtStocks },
+  ];
+  const currentEquityCfd = equityCfdSubAccounts[equityCfdIndex];
   const data = tabData[activeTab];
   const yOffset = cardExpanded ? 0 : -157;
   return (
@@ -385,7 +396,7 @@ export default function VuluePage() {
       {/* Delayed Execution Available */}
       {/* Text: left=89.5, center-y=730 | Pills: top=728 | Figma node 3069:1734 */}
       <p style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 12, color: '#455a64', textAlign: 'center', left: 89.5, top: 730, width: 141, letterSpacing: '-0.408px', lineHeight: '22px', whiteSpace: 'nowrap' }}>
-        {activeTab === 'Equities' ? 'Real & Near Real Time Execution Available' : 'Delayed Execution Available'}
+        {activeTab === 'Equities' || activeTab === 'Equities CFDs' ? 'Real & Near Real Time Execution Available' : 'Delayed Execution Available'}
       </p>
       {/* Bond sub-account scroll indicator — right side of Delayed Execution row */}
       {activeTab === 'Bonds' && (
@@ -399,6 +410,13 @@ export default function VuluePage() {
         <div style={{ position: 'absolute', transform: 'translateY(-50%)', display: 'flex', alignItems: 'center', gap: 4, right: 20, top: 730 }}>
           {equitySubAccounts.map((_, idx) => (
             <div key={idx} onClick={() => setEquityIndex(idx)} style={{ width: idx === equityIndex ? 28 : 8, height: 4, borderRadius: 40, background: '#2254d4', opacity: idx === equityIndex ? 1 : 0.7, transition: 'all 0.2s ease', cursor: 'pointer' }} />
+          ))}
+        </div>
+      )}
+      {activeTab === 'Equities CFDs' && (
+        <div style={{ position: 'absolute', transform: 'translateY(-50%)', display: 'flex', alignItems: 'center', gap: 4, right: 20, top: 730 }}>
+          {equityCfdSubAccounts.map((_, idx) => (
+            <div key={idx} onClick={() => setEquityCfdIndex(idx)} style={{ width: idx === equityCfdIndex ? 28 : 8, height: 4, borderRadius: 40, background: '#2254d4', opacity: idx === equityCfdIndex ? 1 : 0.7, transition: 'all 0.2s ease', cursor: 'pointer' }} />
           ))}
         </div>
       )}
@@ -416,6 +434,10 @@ export default function VuluePage() {
             if (activeTab === 'Equities') {
               if (dx < -40) setEquityIndex((i) => (i + 1) % equitySubAccounts.length);
               else if (dx > 40) setEquityIndex((i) => (i - 1 + equitySubAccounts.length) % equitySubAccounts.length);
+            }
+            if (activeTab === 'Equities CFDs') {
+              if (dx < -40) setEquityCfdIndex((i) => (i + 1) % equityCfdSubAccounts.length);
+              else if (dx > 40) setEquityCfdIndex((i) => (i - 1 + equityCfdSubAccounts.length) % equityCfdSubAccounts.length);
             }
           }}
           style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }}
@@ -476,8 +498,11 @@ export default function VuluePage() {
             {activeTab === 'Equities' && (
               <img src={currentEquity.logo} alt={currentEquity.name} style={{ width: 15, height: 15, borderRadius: 30, objectFit: 'cover', flexShrink: 0 }} />
             )}
+            {activeTab === 'Equities CFDs' && (
+              <img src={currentEquityCfd.logo} alt={currentEquityCfd.name} style={{ width: 15, height: 15, borderRadius: 30, objectFit: 'cover', flexShrink: 0 }} />
+            )}
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>
-              {activeTab === 'Bonds' ? currentBond.name : activeTab === 'Equities' ? currentEquity.name : data.subAccount}
+              {activeTab === 'Bonds' ? currentBond.name : activeTab === 'Equities' ? currentEquity.name : activeTab === 'Equities CFDs' ? currentEquityCfd.name : data.subAccount}
             </p>
           </div>
 
