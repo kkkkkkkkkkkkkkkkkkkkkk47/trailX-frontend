@@ -15,7 +15,7 @@ const tabData: Record<Tab, { subAccount: string; balance: string; holdings: stri
   'Metals':         { subAccount: 'Metals CFDs',       balance: '$0.0',    holdings: '0', todayReturn: '0%',     totalReturn: '0%',     marketValue: '$0',  floatingPnL: '0.0%'   },
   'Energies':       { subAccount: 'Energies CFDs',     balance: '$0.0',    holdings: '0', todayReturn: '0%',     totalReturn: '0%',     marketValue: '$0',  floatingPnL: '0.0%'   },
   'Indices':        { subAccount: 'Indices CFDs',      balance: '$0.0',    holdings: '0', todayReturn: '0%',     totalReturn: '0%',     marketValue: '$0',  floatingPnL: '0.0%'   },
-  'Bonds':          { subAccount: 'Bonds CFDs',        balance: '$0.0',    holdings: '0', todayReturn: '0%',     totalReturn: '0%',     marketValue: '$0',  floatingPnL: '0.0%'   },
+  'Bonds':          { subAccount: 'Nigeria Bonds',        balance: '$0.0',    holdings: '0', todayReturn: '0%',     totalReturn: '0%',     marketValue: '$0',  floatingPnL: '0.0%'   },
   'Equities':       { subAccount: 'Equities',          balance: '$0.0',    holdings: '0', todayReturn: '0%',     totalReturn: '0%',     marketValue: '$0',  floatingPnL: '0.0%'   },
   'Equities CFDs':  { subAccount: 'Equities CFDs',     balance: '$0.0',    holdings: '0', todayReturn: '0%',     totalReturn: '0%',     marketValue: '$0',  floatingPnL: '0.0%'   },
   'ETF CFDs':       { subAccount: 'ETF CFDs',          balance: '$0.0',    holdings: '0', todayReturn: '0%',     totalReturn: '0%',     marketValue: '$0',  floatingPnL: '0.0%'   },
@@ -365,7 +365,16 @@ export default function VuluePage() {
         {/* Title — top: 737 */}
         <div style={{ position: 'absolute', left: 37, top: 737, width: 229 }}>
           <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>Portfolio Sub-Account</p>
-          <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>{data.subAccount}</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            {activeTab === 'Bonds' && (
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, borderRadius: '50%', overflow: 'hidden' }}>
+                <rect x="0" y="0" width="6.67" height="20" fill="#008751" />
+                <rect x="6.67" y="0" width="6.66" height="20" fill="#ffffff" />
+                <rect x="13.33" y="0" width="6.67" height="20" fill="#008751" />
+              </svg>
+            )}
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>{data.subAccount}</p>
+          </div>
         </div>
 
         {/* Real/Demo toggle */}
