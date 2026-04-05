@@ -52,13 +52,9 @@ export default function VuluePage() {
   const currentEquity = equitySubAccounts[equityIndex];
   const [equityCfdIndex, setEquityCfdIndex] = useState(0);
   const equityCfdSubAccounts = [
-    { name: 'US Stock CFDs',              logo: UsStocks },
-    { name: 'LSE Stock CFDs',             logo: LseStocks },
-    { name: 'EuroNext Stock CFDs',        logo: EuronextStocks },
-    { name: 'JPX Stock CFDs',             logo: JpxStocks },
-    { name: 'Hong Kong Stock CFDs',       logo: HkStocks },
-    { name: 'Poland Stock CFDs',          logo: PolandStocks },
-    { name: 'Frankfurt Exotic Stock CFDs',logo: FrankfurtStocks },
+    { name: 'US Stock CFDs',        logo: UsStocks },
+    { name: 'Hong Kong Stock CFDs', logo: HkStocks },
+    { name: 'UAE Stock CFDs',       logo: null },
   ];
   const currentEquityCfd = equityCfdSubAccounts[equityCfdIndex];
   const data = tabData[activeTab];
@@ -498,8 +494,16 @@ export default function VuluePage() {
             {activeTab === 'Equities' && (
               <img src={currentEquity.logo} alt={currentEquity.name} style={{ width: 15, height: 15, borderRadius: 30, objectFit: 'cover', flexShrink: 0 }} />
             )}
-            {activeTab === 'Equities CFDs' && (
+            {activeTab === 'Equities CFDs' && currentEquityCfd.logo && (
               <img src={currentEquityCfd.logo} alt={currentEquityCfd.name} style={{ width: 15, height: 15, borderRadius: 30, objectFit: 'cover', flexShrink: 0 }} />
+            )}
+            {activeTab === 'Equities CFDs' && !currentEquityCfd.logo && (
+              <svg width="15" height="15" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, borderRadius: '50%', overflow: 'hidden' }}>
+                <rect x="0" y="0" width="20" height="6.67" fill="#00732F" />
+                <rect x="0" y="6.67" width="20" height="6.67" fill="#FFFFFF" />
+                <rect x="0" y="13.33" width="20" height="6.67" fill="#000000" />
+                <rect x="0" y="0" width="6" height="20" fill="#FF0000" />
+              </svg>
             )}
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>
               {activeTab === 'Bonds' ? currentBond.name : activeTab === 'Equities' ? currentEquity.name : activeTab === 'Equities CFDs' ? currentEquityCfd.name : data.subAccount}
