@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
   Rectangle1040, Vector, Rectangle1556, Group4802, Group4941,
   Ellipse371, Vector1, Arrow26, Ellipse353, Ellipse354,
@@ -25,6 +25,17 @@ const tabData: Record<Tab, { subAccount: string; balance: string; holdings: stri
 export default function VuluePage() {
   const [activeTab, setActiveTab] = useState<Tab>('FX');
   const [cardExpanded, setCardExpanded] = useState(true);
+  const [bondIndex, setBondIndex] = useState(0);
+  const touchStartX = useRef(0);
+  const bondSubAccounts = [
+    { name: 'Nigeria Bonds', flag: 'NG' },
+    { name: 'US Bonds & Bond CFDs', flag: 'US' },
+    { name: 'Brazil Bonds', flag: 'BR' },
+    { name: 'Poland Bonds', flag: 'PL' },
+    { name: 'S. Africa Bonds', flag: 'ZA' },
+    { name: 'UAE Bonds', flag: 'AE' },
+  ];
+  const currentBond = bondSubAccounts[bondIndex];
   const data = tabData[activeTab];
   const yOffset = cardExpanded ? 0 : -157;
   return (
@@ -245,7 +256,6 @@ export default function VuluePage() {
       <div onClick={() => setActiveTab('Bonds')} style={{ cursor: 'pointer', position: 'absolute', background: activeTab === 'Bonds' ? 'white' : '#494b4f', border: activeTab === 'Bonds' ? '1px solid #2254d4' : 'none', left: 329, top: 525, width: 72, height: 45, borderRadius: 25, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 14, color: activeTab === 'Bonds' ? '#2254d4' : 'white' }}>Bonds</span>
       </div>
-
       {/* Equities tab — x=27, y=583, w=112, h=45 */}
       <div onClick={() => setActiveTab('Equities')} style={{ cursor: 'pointer', position: 'absolute', background: activeTab === 'Equities' ? 'white' : '#494b4f', border: activeTab === 'Equities' ? '1px solid #2254d4' : 'none', left: 27, top: 583, width: 112, height: 45, borderRadius: 25, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 14, color: activeTab === 'Equities' ? '#2254d4' : 'white' }}>Equities</span>
@@ -358,82 +368,150 @@ export default function VuluePage() {
       </div>
 
       {/* ── Portfolio Sub-Account Card (Group 4970) ── */}
-      <div style={{ position: 'absolute', display: 'contents', left: 19, top: 713 }}>
+      {/* Delayed Execution Available */}
+      {/* Text: left=89.5, center-y=730 | Pills: top=728 | Figma node 3069:1734 */}
+      <p style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 12, color: '#455a64', textAlign: 'center', left: 89.5, top: 730, width: 141, letterSpacing: '-0.408px', lineHeight: '22px', whiteSpace: 'nowrap' }}>
+        Delayed Execution Available
+      </p>
+      {/* Bond sub-account scroll indicator — right side of Delayed Execution row */}
+      {activeTab === 'Bonds' && (
+        <div style={{ position: 'absolute', transform: 'translateY(-50%)', display: 'flex', alignItems: 'center', gap: 4, right: 20, top: 730 }}>
+          {bondSubAccounts.map((_, idx) => (
+            <div key={idx} onClick={() => setBondIndex(idx)} style={{ width: idx === bondIndex ? 28 : 8, height: 4, borderRadius: 40, background: '#2254d4', opacity: idx === bondIndex ? 1 : 0.7, transition: 'all 0.2s ease', cursor: 'pointer' }} />
+          ))}
+        </div>
+      )}
+
+      <div style={{ position: 'absolute', display: 'contents', left: 19, top: 750 }}>
         {/* Card background */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 713, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }} />
+        <div
+          onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+          onTouchEnd={(e) => {
+            const dx = e.changedTouches[0].clientX - touchStartX.current;
+            if (activeTab === 'Bonds') {
+              if (dx < -40) setBondIndex((i) => (i + 1) % bondSubAccounts.length);
+              else if (dx > 40) setBondIndex((i) => (i - 1 + bondSubAccounts.length) % bondSubAccounts.length);
+            }
+          }}
+          style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }}
+        />
 
         {/* Title — top: 737 */}
-        <div style={{ position: 'absolute', left: 37, top: 737, width: 229 }}>
+        <div style={{ position: 'absolute', left: 37, top: 774, width: 229 }}>
           <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>Portfolio Sub-Account</p>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            {activeTab === 'Bonds' && (
+            {activeTab === 'Bonds' && currentBond.flag === 'NG' && (
               <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, borderRadius: '50%', overflow: 'hidden' }}>
                 <rect x="0" y="0" width="6.67" height="20" fill="#008751" />
                 <rect x="6.67" y="0" width="6.66" height="20" fill="#ffffff" />
                 <rect x="13.33" y="0" width="6.67" height="20" fill="#008751" />
               </svg>
             )}
-            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>{data.subAccount}</p>
+            {activeTab === 'Bonds' && currentBond.flag === 'US' && (
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, borderRadius: '50%', overflow: 'hidden' }}>
+                {[0,1,2,3,4,5,6,7,8,9,10,11,12].map((s) => (
+                  <rect key={s} x="0" y={s * (20/13)} width="20" height={20/13} fill={s % 2 === 0 ? '#B22234' : '#FFFFFF'} />
+                ))}
+                <rect x="0" y="0" width="8" height="10" fill="#3C3B6E" />
+                {[0,1,2,3,4].map((row) => [0,1,2,3].map((col) => (
+                  <circle key={`${row}-${col}`} cx={col * 1.8 + 1} cy={row * 1.8 + 1} r="0.45" fill="white" />
+                )))}
+              </svg>
+            )}
+            {activeTab === 'Bonds' && currentBond.flag === 'BR' && (
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, borderRadius: '50%', overflow: 'hidden' }}>
+                <rect x="0" y="0" width="20" height="20" fill="#009C3B" />
+                <polygon points="10,2 18,10 10,18 2,10" fill="#FFDF00" />
+                <circle cx="10" cy="10" r="4" fill="#002776" />
+              </svg>
+            )}
+            {activeTab === 'Bonds' && currentBond.flag === 'PL' && (
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, borderRadius: '50%', overflow: 'hidden' }}>
+                <rect x="0" y="0" width="20" height="10" fill="#FFFFFF" />
+                <rect x="0" y="10" width="20" height="10" fill="#DC143C" />
+              </svg>
+            )}
+            {activeTab === 'Bonds' && currentBond.flag === 'ZA' && (
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, borderRadius: '50%', overflow: 'hidden' }}>
+                <rect x="0" y="0" width="20" height="20" fill="#007A4D" />
+                <rect x="0" y="6.67" width="20" height="6.67" fill="#FFFFFF" />
+                <rect x="0" y="7.5" width="20" height="5" fill="#FFB612" />
+                <polygon points="0,0 8,10 0,20" fill="#000000" />
+                <polygon points="0,2 6,10 0,18" fill="#DE3831" />
+              </svg>
+            )}
+            {activeTab === 'Bonds' && currentBond.flag === 'AE' && (
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, borderRadius: '50%', overflow: 'hidden' }}>
+                <rect x="0" y="0" width="20" height="6.67" fill="#00732F" />
+                <rect x="0" y="6.67" width="20" height="6.67" fill="#FFFFFF" />
+                <rect x="0" y="13.33" width="20" height="6.67" fill="#000000" />
+                <rect x="0" y="0" width="6" height="20" fill="#FF0000" />
+              </svg>
+            )}
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>
+              {activeTab === 'Bonds' ? currentBond.name : data.subAccount}
+            </p>
           </div>
+
         </div>
 
         {/* Real/Demo toggle */}
-        <div style={{ position: 'absolute', display: 'contents', left: 37, top: 798 }}>
-          <div style={{ position: 'absolute', background: '#22282c', height: 13, left: 37, borderRadius: 4, top: 798, width: 58 }} />
-          <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 37, borderRadius: 4, top: 798, width: 25 }} />
-          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 40, fontSize: 10, color: 'white', top: 799, width: 19 }}>Real</p>
-          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 65, color: '#455a64', fontSize: 10, top: 799, width: 27 }}>Demo</p>
+        <div style={{ position: 'absolute', display: 'contents', left: 37, top: 835 }}>
+          <div style={{ position: 'absolute', background: '#22282c', height: 13, left: 37, borderRadius: 4, top: 835, width: 58 }} />
+          <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 37, borderRadius: 4, top: 835, width: 25 }} />
+          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 40, fontSize: 10, color: 'white', top: 836, width: 19 }}>Real</p>
+          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 65, color: '#455a64', fontSize: 10, top: 836, width: 27 }}>Demo</p>
         </div>
 
         {/* Standard toggle */}
-        <div style={{ position: 'absolute', display: 'contents', left: 97, top: 798 }}>
-          <div style={{ position: 'absolute', display: 'contents', left: 97, top: 798 }}>
-            <div style={{ position: 'absolute', background: '#22282c', height: 13, left: 97, borderRadius: 4, top: 798, width: 50 }} />
-            <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 101, color: '#a6a6a6', fontSize: 10, top: 799, width: 44 }}>Standard</p>
+        <div style={{ position: 'absolute', display: 'contents', left: 97, top: 835 }}>
+          <div style={{ position: 'absolute', display: 'contents', left: 97, top: 835 }}>
+            <div style={{ position: 'absolute', background: '#22282c', height: 13, left: 97, borderRadius: 4, top: 835, width: 50 }} />
+            <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 101, color: '#a6a6a6', fontSize: 10, top: 836, width: 44 }}>Standard</p>
           </div>
         </div>
 
         {/* Balance */}
-        <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 830, left: 37, lineHeight: 1.28 }}>{data.balance}</p>
+        <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 867, left: 37, lineHeight: 1.28 }}>{data.balance}</p>
 
         {/* See Less / See More toggle */}
         {cardExpanded ? (
-          <div onClick={() => setCardExpanded(false)} style={{ position: 'absolute', left: 327, top: 820, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => setCardExpanded(false)} style={{ position: 'absolute', left: 327, top: 857, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
           </div>
         ) : (
-          <div onClick={() => setCardExpanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 26, borderRadius: 15, top: 869, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => setCardExpanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 26, borderRadius: 15, top: 906, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
           </div>
         )}
 
-        {/* Holdings Floating PnL label + value — always visible */}
-        <div style={{ position: 'absolute', right: 40, top: 730, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
-          <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 10, color: '#525d7a', letterSpacing: '-0.408px', whiteSpace: 'nowrap' }}>Holdings Floating PnL</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-            <img alt="" style={{ width: 8, height: 8, flexShrink: 0 }} src={Polygon19} />
-            <span style={{ fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 12, color: '#05a54f', fontStyle: 'normal' }}>{data.floatingPnL}</span>
-          </div>
+        {/* Holdings Floating PnL — Figma: center top=778, value top=782, polygon top=793 */}
+        <div style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', left: 345.5, top: 778, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: 85, letterSpacing: '-0.408px' }}>
+          <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 10, color: '#455a64', lineHeight: '22px' }}>Holdings Floating PnL</span>
+        </div>
+        <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 12, color: '#455a64', top: 782, left: 358, lineHeight: '34px', height: 22, width: 44 }}>{data.floatingPnL}</p>
+        <div style={{ position: 'absolute', left: 343, top: 793, width: 12, height: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img alt="" style={{ width: 8, height: 8 }} src={Polygon19} />
         </div>
 
         {/* Expanded-only content */}
         {cardExpanded && (<>
         {/* Upload button */}
-        <div style={{ position: 'absolute', left: 48.375, top: 894.875, width: 26.25, height: 26.25 }}>
+        <div style={{ position: 'absolute', left: 48.375, top: 931.875, width: 26.25, height: 26.25 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector5} />
         </div>
 
         {/* Arrow button */}
-        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 193, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 886, width: 95 }} />
-        <div style={{ position: 'absolute', height: 6.222, left: 227, top: 907, width: 22.5 }}>
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 193, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 923, width: 95 }} />
+        <div style={{ position: 'absolute', height: 6.222, left: 227, top: 944, width: 22.5 }}>
           <div style={{ position: 'absolute', inset: '-58.14% -11.97% -16.07% -4.44%' }}>
             <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Arrow29} />
           </div>
         </div>
 
         {/* Swap button */}
-        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 886, width: 95 }} />
-        <div style={{ position: 'absolute', display: 'flex', height: 16.857, alignItems: 'center', justifyContent: 'center', left: 333, top: 903, width: 17.805 }}>
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 923, width: 95 }} />
+        <div style={{ position: 'absolute', display: 'flex', height: 16.857, alignItems: 'center', justifyContent: 'center', left: 333, top: 940, width: 17.805 }}>
           <div style={{ flex: 'none', transform: 'rotate(-60.85deg) skewX(1.53deg)' }}>
             <div style={{ height: 13.393, position: 'relative', width: 12.192 }}>
               <div style={{ position: 'absolute', inset: '-54.98% -8.2% -7.47% -8.2%' }}>
@@ -444,53 +522,53 @@ export default function VuluePage() {
         </div>
 
         {/* Chart bars button */}
-        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 92, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 886, width: 95 }} />
-        <div style={{ position: 'absolute', display: 'contents', left: 129, top: 899 }}>
-          <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid white', height: 10.25, left: 129, borderRadius: 1, top: 899, width: 3.6 }} />
-          <div style={{ position: 'absolute', background: '#c80808', border: '1px solid white', height: 10.25, left: 136.2, borderRadius: 1, top: 909.25, width: 3.6 }} />
-          <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid white', height: 10.25, left: 143.4, borderRadius: 1, top: 903.1, width: 3.6 }} />
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 92, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 923, width: 95 }} />
+        <div style={{ position: 'absolute', display: 'contents', left: 129, top: 936 }}>
+          <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid white', height: 10.25, left: 129, borderRadius: 1, top: 936, width: 3.6 }} />
+          <div style={{ position: 'absolute', background: '#c80808', border: '1px solid white', height: 10.25, left: 136.2, borderRadius: 1, top: 946.25, width: 3.6 }} />
+          <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid white', height: 10.25, left: 143.4, borderRadius: 1, top: 940.1, width: 3.6 }} />
         </div>
 
         {/* Performance Summary button */}
-        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 944, width: 256 }} />
-        <div style={{ position: 'absolute', display: 'contents', left: 52, top: 956 }}>
-          <div style={{ position: 'absolute', display: 'contents', left: 52, top: 956 }}>
-            <div style={{ position: 'absolute', background: '#2254d4', height: 15.999, left: 52, borderRadius: '1px 1px 0 0', top: 956, width: 4.154 }} />
-            <div style={{ position: 'absolute', display: 'flex', height: 5.714, alignItems: 'center', justifyContent: 'center', left: 58.92, top: 972.29, width: 4.154 }}>
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 981, width: 256 }} />
+        <div style={{ position: 'absolute', display: 'contents', left: 52, top: 993 }}>
+          <div style={{ position: 'absolute', display: 'contents', left: 52, top: 993 }}>
+            <div style={{ position: 'absolute', background: '#2254d4', height: 15.999, left: 52, borderRadius: '1px 1px 0 0', top: 993, width: 4.154 }} />
+            <div style={{ position: 'absolute', display: 'flex', height: 5.714, alignItems: 'center', justifyContent: 'center', left: 58.92, top: 1009.29, width: 4.154 }}>
               <div style={{ transform: 'scaleY(-1)', flex: 'none' }}>
                 <div style={{ background: '#2254d4', height: 5.714, borderRadius: '1px 1px 0 0', width: 4.154 }} />
               </div>
             </div>
-            <div style={{ position: 'absolute', background: '#2254d4', height: 12.57, left: 65.85, borderRadius: '1px 1px 0 0', top: 959.43, width: 4.154 }} />
+            <div style={{ position: 'absolute', background: '#2254d4', height: 12.57, left: 65.85, borderRadius: '1px 1px 0 0', top: 996.43, width: 4.154 }} />
           </div>
         </div>
-        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 'calc(50% - 117px)', color: '#2254d4', fontSize: 14, top: 958, width: 152 }}>Performance Summary</p>
+        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 98, color: '#2254d4', fontSize: 14, top: 995, width: 152 }}>Performance Summary</p>
 
         {/* Trade button (blue) */}
-        <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 944, width: 95 }} />
-        <div style={{ position: 'absolute', height: 12, left: 327, top: 961, width: 30 }}>
+        <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 981, width: 95 }} />
+        <div style={{ position: 'absolute', height: 12, left: 327, top: 998, width: 30 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4968} />
         </div>
 
         {/* Frosted glass panel */}
-        <div style={{ position: 'absolute', display: 'flex', height: 79, alignItems: 'center', justifyContent: 'center', left: 36, top: 1002, width: 358 }}>
+        <div style={{ position: 'absolute', display: 'flex', height: 79, alignItems: 'center', justifyContent: 'center', left: 36, top: 1039, width: 358 }}>
           <div style={{ transform: 'rotate(-90deg)', flex: 'none' }}>
             <div style={{ backdropFilter: 'blur(2px)', background: 'rgba(34,40,44,0.1)', border: '0.5px solid #0a2ddb', height: 358, borderRadius: 15, width: 79 }} />
           </div>
         </div>
 
         {/* Vector6 */}
-        <div style={{ position: 'absolute', left: 49, top: 1030, width: 22, height: 19 }}>
+        <div style={{ position: 'absolute', left: 49, top: 1067, width: 22, height: 19 }}>
           <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector6} />
         </div>
 
         {/* Strategy text */}
-        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 'calc(50% - 127px)', color: '#22282c', fontSize: 13, top: 1021, width: 207 }}>
+        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 'calc(50% - 127px)', color: '#22282c', fontSize: 13, top: 1058, width: 207 }}>
           Strategy Tethering and Portfolio Mirroring marketplace
         </p>
 
         {/* Arrow28 */}
-        <div style={{ position: 'absolute', display: 'flex', height: 9.564, alignItems: 'center', justifyContent: 'center', left: 342, top: 1035, width: 12.982 }}>
+        <div style={{ position: 'absolute', display: 'flex', height: 9.564, alignItems: 'center', justifyContent: 'center', left: 342, top: 1072, width: 12.982 }}>
           <div style={{ flex: 'none', transform: 'rotate(-36.38deg)' }}>
             <div style={{ height: 0, position: 'relative', width: 16.125 }}>
               <div style={{ position: 'absolute', inset: '-7.36px -6.2%' }}>
@@ -501,7 +579,7 @@ export default function VuluePage() {
         </div>
 
         {/* Divider inside card */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 0.5px)', top: 865, width: 391 }}>
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 1px)', top: 902, width: 386 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke2} />
         </div>
         </>)}
