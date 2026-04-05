@@ -64,13 +64,13 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
 
       {/* ── Password input — x=36, y=342, w=360, h=51 ── */}
       <div style={{ position: 'absolute', left: 36, top: 342, width: 360, height: 51, backdropFilter: 'blur(2px)', background: '#e3eaf7', border: '1px solid white', borderRadius: 15, opacity: 0.7 }} />
-      {/* dots — x=58,75,92,109,126,143 y=364 w=8 h=8 */}
+      {/* dots — centered vertically in box (y=342, h=51 → center=367.5, dot h=8 → top=363.5) */}
       {[58, 75, 92, 109, 126, 143].map((x, i) => (
-        <div key={i} style={{ position: 'absolute', left: x, top: 364, width: 8, height: 8 }}>
+        <div key={i} style={{ position: 'absolute', left: x, top: 357, width: 8, height: 8 }}>
           <img alt="" style={{ width: '100%', height: '100%' }} src={i === 4 ? loginDotActive : loginDot} />
         </div>
       ))}
-      {/* eye icon — x=353, y=359, w=19.17, h=17 */}
+      {/* eye icon — centered vertically in box, right-aligned at x=353 */}
       <div style={{ position: 'absolute', left: 353, top: 359, width: 19.17, height: 17, cursor: 'pointer' }} onClick={() => setShowPassword(!showPassword)}>
         <img alt="" style={{ position: 'absolute', width: '100%', height: '100%' }} src={loginEye} />
       </div>
