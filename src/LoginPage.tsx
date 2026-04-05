@@ -11,7 +11,7 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
 
   const bg = dark ? '#1410b1' : '#f7fafb';
   const textPrimary = dark ? 'white' : '#1410b1';
-  const textSecondary = dark ? 'rgba(255,255,255,0.7)' : '#0c35b8';
+  const textSecondary = dark ? 'white' : '#0c35b8';
   const inputBg = dark ? 'rgba(255,255,255,0.08)' : 'rgba(100,135,225,0.2)';
   const passwordBg = dark ? 'rgba(255,255,255,0.08)' : '#e3eaf7';
   const accountBg = dark ? 'rgba(255,255,255,0.12)' : 'rgba(17,70,246,0.7)';
@@ -108,9 +108,9 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
       <div style={{ position: 'absolute', left: 36, top: 479, width: 360, height: 72, background: 'linear-gradient(to bottom, #3a36dd, #9f9dff)', border: '1px solid #2254d4', borderRadius: 25 }} />
       <div
         onClick={onLogin}
-        style={{ position: 'absolute', left: 36, top: 479, width: 360, height: 72, background: dark ? 'rgba(255,255,255,0.15)' : '#1410b1', border: `1px solid ${dark ? 'rgba(255,255,255,0.4)' : '#6889dc'}`, borderRadius: 25, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+        style={{ position: 'absolute', left: 36, top: 479, width: 360, height: 72, background: dark ? 'white' : '#1410b1', border: `1px solid ${dark ? 'white' : '#6889dc'}`, borderRadius: 25, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
       >
-        <span style={{ fontFamily: "'Anek Odia', sans-serif", fontWeight: 400, fontSize: 20, color: 'white', lineHeight: '22px' }}>Confirm</span>
+        <span style={{ fontFamily: "'Anek Odia', sans-serif", fontWeight: 400, fontSize: 20, color: dark ? '#1410b1' : 'white', lineHeight: '22px' }}>Confirm</span>
       </div>
 
       {/* ── VULUE logo + wordmark — x=174, y=761 ── */}
