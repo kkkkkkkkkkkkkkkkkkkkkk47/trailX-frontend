@@ -8,7 +8,6 @@ import {
   Polygon19, Group4968, Vector6, Arrow28, Line7Stroke2,
 } from './assets/figma/index';
 
-
 type Tab = 'FX' | 'Metals' | 'Energies' | 'Indices' | 'Bonds' | 'Equities' | 'Equities CFDs' | 'ETF CFDs' | 'Event Contracts';
 
 const tabData: Record<Tab, { subAccount: string; balance: string; holdings: string; todayReturn: string; totalReturn: string; marketValue: string; floatingPnL: string }> = {
@@ -25,7 +24,6 @@ const tabData: Record<Tab, { subAccount: string; balance: string; holdings: stri
 
 export default function VuluePage() {
   const [activeTab, setActiveTab] = useState<Tab>('FX');
-  const [showMore, setShowMore] = useState(false);
   const data = tabData[activeTab];
   return (
     <div style={{ background: '#eef0f1', position: 'relative', width: '100%', height: '100%' }}>
@@ -359,43 +357,35 @@ export default function VuluePage() {
 
       {/* ── Portfolio Sub-Account Card (Group 4970) ── */}
       <div style={{ position: 'absolute', display: 'contents', left: 19, top: 713 }}>
-        {/* Card background — collapsed (190px) or expanded (382px) */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', height: showMore ? 190 : 382, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: showMore ? 750 : 713, width: 391, border: showMore ? '2px solid #2254d4' : 'none', transition: 'all 0.3s ease' }} />
+        {/* Card background */}
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', height: 382, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 713, width: 391 }} />
 
-        {/* Title */}
-        <div style={{ position: 'absolute', left: showMore ? 32 : 37, top: showMore ? 774 : 737, width: 229 }}>
+        {/* Title — top: 737 */}
+        <div style={{ position: 'absolute', left: 37, top: 737, width: 229 }}>
           <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>Portfolio Sub-Account</p>
-          <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>{showMore ? 'US Bonds & Bond CFDs' : data.subAccount}</p>
+          <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>{data.subAccount}</p>
         </div>
 
         {/* Real/Demo toggle */}
-        <div style={{ position: 'absolute', display: 'contents', left: showMore ? 32 : 37, top: showMore ? 811 : 798 }}>
-          <div style={{ position: 'absolute', background: '#22282c', height: 13, left: showMore ? 32 : 37, borderRadius: 4, top: showMore ? 811 : 798, width: 58 }} />
-          <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: showMore ? 32 : 37, borderRadius: 4, top: showMore ? 811 : 798, width: 25 }} />
-          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: showMore ? 35 : 40, fontSize: 10, color: 'white', top: showMore ? 812 : 799, width: 19 }}>Real</p>
-          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: showMore ? 60 : 65, color: '#455a64', fontSize: 10, top: showMore ? 812 : 799, width: 27 }}>Demo</p>
+        <div style={{ position: 'absolute', display: 'contents', left: 37, top: 798 }}>
+          <div style={{ position: 'absolute', background: '#22282c', height: 13, left: 37, borderRadius: 4, top: 798, width: 58 }} />
+          <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 37, borderRadius: 4, top: 798, width: 25 }} />
+          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 40, fontSize: 10, color: 'white', top: 799, width: 19 }}>Real</p>
+          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 65, color: '#455a64', fontSize: 10, top: 799, width: 27 }}>Demo</p>
         </div>
 
         {/* Standard toggle */}
-        <div style={{ position: 'absolute', display: 'contents', left: showMore ? 92 : 97, top: showMore ? 811 : 798 }}>
-          <div style={{ position: 'absolute', display: 'contents', left: showMore ? 92 : 97, top: showMore ? 811 : 798 }}>
-            <div style={{ position: 'absolute', background: '#22282c', height: 13, left: showMore ? 92 : 97, borderRadius: 4, top: showMore ? 811 : 798, width: 50 }} />
-            <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: showMore ? 96 : 101, color: '#a6a6a6', fontSize: 10, top: showMore ? 812 : 799, width: 44 }}>Standard</p>
+        <div style={{ position: 'absolute', display: 'contents', left: 97, top: 798 }}>
+          <div style={{ position: 'absolute', display: 'contents', left: 97, top: 798 }}>
+            <div style={{ position: 'absolute', background: '#22282c', height: 13, left: 97, borderRadius: 4, top: 798, width: 50 }} />
+            <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 101, color: '#a6a6a6', fontSize: 10, top: 799, width: 44 }}>Standard</p>
           </div>
         </div>
 
         {/* Balance */}
-        <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: showMore ? 840 : 830, left: showMore ? 32 : 37, lineHeight: 1.28 }}>{showMore ? '₦0.0' : data.balance}</p>
-
-        {/* See Less — only shown in expanded mode */}
-        {!showMore && (
-          <div style={{ position: 'absolute', left: 327, top: 820, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={() => setShowMore(true)}>
-            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
-          </div>
-        )}
+        <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 830, left: 37, lineHeight: 1.28 }}>{data.balance}</p>
 
         {/* Upload button */}
-        {!showMore && (<>
         <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 886, width: 50 }} />
         <div style={{ position: 'absolute', left: 48.375, top: 894.875, width: 26.25, height: 26.25 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector5} />
@@ -491,41 +481,6 @@ export default function VuluePage() {
         <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 0.5px)', top: 865, width: 391 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke2} />
         </div>
-        </>)}
-
-        {/* ── Collapsed / See More state ── */}
-        {showMore && (<>
-          {/* Holdings Floating PnL */}
-          <div style={{ position: 'absolute', right: 40, top: 765, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
-            <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 10, color: '#525d7a', letterSpacing: '-0.408px', whiteSpace: 'nowrap' }}>Holdings Floating PnL</span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-              <img alt="" style={{ width: 8, height: 8, flexShrink: 0 }} src={Polygon19} />
-              <span style={{ fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 12, color: '#455a64', fontStyle: 'normal' }}>0.0%</span>
-            </div>
-          </div>
-
-          {/* Delayed Execution Available */}
-          <div style={{ position: 'absolute', left: 89.5, top: 730, transform: 'translate(-50%, -50%)', width: 141, textAlign: 'center' }}>
-            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 12, color: '#455a64', lineHeight: '22px', margin: 0 }}>Delayed Execution Available</p>
-          </div>
-
-          {/* Carousel dots */}
-          <div style={{ position: 'absolute', left: 'calc(50% + 131px)', transform: 'translateX(-50%)', top: 728, background: '#2254d4', height: 4, width: 28, borderRadius: 40 }} />
-          <div style={{ position: 'absolute', left: 'calc(50% + 171px)', transform: 'translateX(-50%)', top: 728, background: '#2254d4', height: 4, width: 8, borderRadius: 40, opacity: 0.7 }} />
-          <div style={{ position: 'absolute', left: 'calc(50% + 111px)', transform: 'translateX(-50%)', top: 728, background: '#2254d4', height: 4, width: 8, borderRadius: 40, opacity: 0.7 }} />
-          <div style={{ position: 'absolute', left: 'calc(50% + 151px)', transform: 'translateX(-50%)', top: 728, background: '#2254d4', height: 4, width: 8, borderRadius: 40, opacity: 0.7 }} />
-          <div style={{ position: 'absolute', left: 'calc(50% + 161px)', transform: 'translateX(-50%)', top: 728, background: '#2254d4', height: 4, width: 8, borderRadius: 40, opacity: 0.7 }} />
-          <div style={{ position: 'absolute', left: 'calc(50% + 179px)', transform: 'translateX(-50%)', top: 728, background: '#2254d4', width: 4, height: 4, borderRadius: 40, opacity: 0.7 }} />
-
-          {/* See more button — x=25, y=875, w=379, h=58 */}
-          <div
-            onClick={() => setShowMore(false)}
-            style={{ position: 'absolute', left: 25, top: 875, width: 379, height: 58, background: '#1410b1', borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
-          >
-            <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', lineHeight: '22px' }}>See more</span>
-          </div>
-        </>)}
-
       </div>
 
     </div>
