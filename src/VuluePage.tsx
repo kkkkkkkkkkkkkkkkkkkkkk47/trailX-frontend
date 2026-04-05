@@ -316,8 +316,6 @@ export default function VuluePage() {
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 14, color: 'white' }}>Add custom Sub-Account</span>
       </div>
 
-        </div>
-      </div>
 
       {/* Orders tab lines */}
       <div style={{ transform: `translateX(-50%) translateY(${yOffset}px)`, transition: 'transform 0.3s ease', position: 'absolute', height: 1, left: 'calc(50% - 66.5px)', top: 1226, width: 249 }}>
