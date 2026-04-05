@@ -54,19 +54,19 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
       {/* ── trailX heading — x=36, y=58, w=223, h=44 ── */}
       <p style={{ position: 'absolute', left: 36, top: 58, width: 223, height: 44, fontFamily: 'Urbanist, sans-serif', fontSize: 0, lineHeight: 0, color: textPrimary, margin: 0 }}>
         <span style={{ fontWeight: 500, fontSize: 40, lineHeight: '1.28' }}>Trail</span>
-        <span style={{ fontWeight: 200, fontStyle: 'italic', fontSize: 40, lineHeight: '1.28' }}>X</span>
+        <span style={{ fontWeight: 200, fontStyle: 'italic', fontSize: 40, lineHeight: '1.28', color: dark ? 'white' : '#1410b1' }}>X</span>
       </p>
 
       {/* ── Big diagonal stripe (background) — rotated 33.77deg ── */}
       <div style={{ position: 'absolute', left: 0, top: 120.5, width: 492.13, height: 731.78, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
         <div style={{ transform: 'rotate(33.77deg)', flexShrink: 0 }}>
-          <div style={{ background: stripeColor, border: `1px solid ${dark ? 'rgba(255,255,255,0.2)' : '#2254d4'}`, height: 876.32, width: 6 }} />
+          <div style={{ background: stripeColor, border: dark ? 'none' : '1px solid #2254d4', height: 876.32, width: 6 }} />
         </div>
       </div>
 
       {/* ── Blue stripe cluster (left side, mid) ── */}
       <div style={{ position: 'absolute', left: -7.11, top: 727.72, width: 108.75, height: 170.25, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-        <div style={{ transform: 'rotate(-31.81deg)' }}><div style={{ background: stripeColor, border: `1px solid ${dark ? 'rgba(255,255,255,0.2)' : '#2254d4'}`, height: 196.63, width: 6 }} /></div>
+        <div style={{ transform: 'rotate(-31.81deg)' }}><div style={{ background: stripeColor, border: dark ? 'none' : '1px solid #2254d4', height: 196.63, width: 6 }} /></div>
       </div>
       <div style={{ position: 'absolute', left: -1, top: 740.45, width: 101.94, height: 162.93, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
         <div style={{ transform: 'rotate(-31.81deg)' }}><div style={{ background: '#6874eb', height: 190.72, width: 1.65 }} /></div>
