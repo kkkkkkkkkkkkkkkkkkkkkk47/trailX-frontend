@@ -24,7 +24,9 @@ const tabData: Record<Tab, { subAccount: string; balance: string; holdings: stri
 
 export default function VuluePage() {
   const [activeTab, setActiveTab] = useState<Tab>('FX');
+  const [cardExpanded, setCardExpanded] = useState(true);
   const data = tabData[activeTab];
+  const yOffset = cardExpanded ? 0 : -192;
   return (
     <div style={{ background: '#eef0f1', position: 'relative', width: '100%', height: '100%' }}>
 
@@ -282,64 +284,64 @@ export default function VuluePage() {
       </div>
 
       {/* Orders tab lines */}
-      <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 66.5px)', top: 1226, width: 249 }}>
+      <div style={{ transform: `translateX(-50%) translateY(${yOffset}px)`, transition: 'transform 0.3s ease', position: 'absolute', height: 1, left: 'calc(50% - 66.5px)', top: 1226, width: 249 }}>
         <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke} />
       </div>
-      <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 165px)', top: 1226, width: 54 }}>
+      <div style={{ transform: `translateX(-50%) translateY(${yOffset}px)`, transition: 'transform 0.3s ease', position: 'absolute', height: 1, left: 'calc(50% - 165px)', top: 1226, width: 54 }}>
         <div style={{ position: 'absolute', inset: '-50% -0.93%' }}>
           <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke1} />
         </div>
       </div>
 
       {/* Orders tabs */}
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.29, left: 122, color: '#22282c', fontSize: 10, top: 1199, whiteSpace: 'nowrap' }}>ORDERS</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.29, left: 216, color: '#22282c', fontSize: 10, top: 1199, whiteSpace: 'nowrap' }}>CLOSED</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 700, lineHeight: 1.29, left: 32, color: '#22282c', fontSize: 10, top: 1199, whiteSpace: 'nowrap' }}>OPEN</p>
-      <p style={{ position: 'absolute', fontFamily: 'Poppins, sans-serif', height: 12, lineHeight: 1.29, left: 'calc(50% + 109px)', fontStyle: 'normal', fontSize: 8, color: '#646363', top: 1200, width: 84 }}>Sorted by open time</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.29, left: 122, color: '#22282c', fontSize: 10, top: 1199 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>ORDERS</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.29, left: 216, color: '#22282c', fontSize: 10, top: 1199 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>CLOSED</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 700, lineHeight: 1.29, left: 32, color: '#22282c', fontSize: 10, top: 1199 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>OPEN</p>
+      <p style={{ position: 'absolute', fontFamily: 'Poppins, sans-serif', height: 12, lineHeight: 1.29, left: 'calc(50% + 109px)', fontStyle: 'normal', fontSize: 8, color: '#646363', top: 1200 + yOffset, width: 84, transition: 'top 0.3s ease' }}>Sorted by open time</p>
 
       {/* Recent positions */}
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 'calc(50% - 187px)', color: '#22282c', fontSize: 10, top: 1143, width: 209 }}>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 'calc(50% - 187px)', color: '#22282c', fontSize: 10, top: 1143 + yOffset, width: 209, transition: 'top 0.3s ease' }}>
         Your recent positions in this instrument can be viewed here.
       </p>
-      <p style={{ position: 'absolute', textDecorationSkipInk: 'none', textDecoration: 'underline solid', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.28, left: 'calc(50% + 76.5px)', color: '#22282c', fontSize: 11, top: 1148, whiteSpace: 'nowrap' }}>
+      <p style={{ position: 'absolute', textDecorationSkipInk: 'none', textDecoration: 'underline solid', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.28, left: 'calc(50% + 76.5px)', color: '#22282c', fontSize: 11, top: 1148 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>
         View trade history
       </p>
-      <div style={{ position: 'absolute', left: 389, top: 1148, width: 12, height: 14 }}>
+      <div style={{ position: 'absolute', left: 389, top: 1148 + yOffset, width: 12, height: 14, transition: 'top 0.3s ease' }}>
         <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={IconCalendar} />
       </div>
 
       {/* Order card */}
-      <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', height: 72, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(34,40,44,0.06)', top: 1349, width: 391 }} />
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.29, left: 34, color: '#22282c', fontSize: 7, top: 1323, whiteSpace: 'nowrap' }}>21/10/2023</p>
+      <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', height: 72, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(34,40,44,0.06)', top: 1349 + yOffset, width: 391, transition: 'top 0.3s ease' }} />
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.29, left: 34, color: '#22282c', fontSize: 7, top: 1323 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>21/10/2023</p>
 
       {/* Portfolio stats */}
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% - 4px)', color: '#22282c', fontSize: 9, top: 1252, whiteSpace: 'nowrap' }}>Total Return</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% - 180px)', color: '#22282c', fontSize: 9, top: 1252, whiteSpace: 'nowrap' }}>Holdings</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 180px)', color: '#22282c', fontSize: 10, top: 1268, whiteSpace: 'nowrap' }}>{data.holdings}</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% - 103px)', color: '#22282c', fontSize: 9, top: 1252, whiteSpace: 'nowrap' }}>Today's Return</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% + 91px)', color: '#22282c', fontSize: 9, top: 1252, whiteSpace: 'nowrap' }}>Current Market Value</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 103px)', fontSize: 10, color: '#23d223', top: 1268, whiteSpace: 'nowrap' }}>{data.todayReturn}</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 3px)', fontSize: 10, color: '#23d223', top: 1268, whiteSpace: 'nowrap' }}>{data.totalReturn}</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.29, left: 'calc(50% + 92px)', color: '#22282c', fontSize: 10, top: 1268, whiteSpace: 'nowrap' }}>{data.marketValue}</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% - 4px)', color: '#22282c', fontSize: 9, top: 1252 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>Total Return</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% - 180px)', color: '#22282c', fontSize: 9, top: 1252 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>Holdings</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 180px)', color: '#22282c', fontSize: 10, top: 1268 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>{data.holdings}</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% - 103px)', color: '#22282c', fontSize: 9, top: 1252 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>Today's Return</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% + 91px)', color: '#22282c', fontSize: 9, top: 1252 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>Current Market Value</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 103px)', fontSize: 10, color: '#23d223', top: 1268 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>{data.todayReturn}</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 3px)', fontSize: 10, color: '#23d223', top: 1268 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>{data.totalReturn}</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.29, left: 'calc(50% + 92px)', color: '#22282c', fontSize: 10, top: 1268 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>{data.marketValue}</p>
 
       {/* Order row */}
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.29, left: 32, color: '#22282c', fontSize: 11, top: 1364, whiteSpace: 'nowrap' }}>VULUEIMS</p>
-      <p style={{ position: 'absolute', fontFamily: 'Poppins, sans-serif', lineHeight: 0, left: 32, fontStyle: 'normal', fontSize: 9, color: '#23d223', top: 1379, whiteSpace: 'pre' }}>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.29, left: 32, color: '#22282c', fontSize: 11, top: 1364 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>VULUEIMS</p>
+      <p style={{ position: 'absolute', fontFamily: 'Poppins, sans-serif', lineHeight: 0, left: 32, fontStyle: 'normal', fontSize: 9, color: '#23d223', top: 1379 + yOffset, whiteSpace: 'pre', transition: 'top 0.3s ease' }}>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.505 }}>Buy at $4</span>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 700, lineHeight: 1.505, color: '#23d223' }}>{` a share, `}</span>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 700, lineHeight: 1.505, color: '#23d223' }}>(4 Units)($16)</span>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.505 }}>{`  `}</span>
       </p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.505, left: 94, fontSize: 6, color: '#23d223', top: 1366, whiteSpace: 'nowrap' }}>Ongoing</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.505, left: 32, color: '#22282c', fontSize: 6, top: 1395, whiteSpace: 'nowrap' }}>Order Type: Limit Order</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.505, left: 147, fontSize: 5, color: '#1a1a1a', top: 1367, whiteSpace: 'nowrap' }}>TP</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.505, left: 133, fontSize: 5, color: '#1a1a1a', top: 1367, whiteSpace: 'nowrap' }}>SL</p>
-      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 341, color: '#22282c', fontSize: 7, top: 1361, whiteSpace: 'nowrap' }}>17:37, Oct 21 2023</p>
-      <p style={{ position: 'absolute', fontFamily: 'Poppins, sans-serif', lineHeight: 0, left: 306, fontStyle: 'normal', fontSize: 9, color: '#23d223', top: 1375, whiteSpace: 'pre' }}>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.505, left: 94, fontSize: 6, color: '#23d223', top: 1366 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>Ongoing</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.505, left: 32, color: '#22282c', fontSize: 6, top: 1395 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>Order Type: Limit Order</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.505, left: 147, fontSize: 5, color: '#1a1a1a', top: 1367 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>TP</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.505, left: 133, fontSize: 5, color: '#1a1a1a', top: 1367 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>SL</p>
+      <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 341, color: '#22282c', fontSize: 7, top: 1361 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>17:37, Oct 21 2023</p>
+      <p style={{ position: 'absolute', fontFamily: 'Poppins, sans-serif', lineHeight: 0, left: 306, fontStyle: 'normal', fontSize: 9, color: '#23d223', top: 1375 + yOffset, whiteSpace: 'pre', transition: 'top 0.3s ease' }}>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.505, color: '#22282c' }}>Unrealised PNL</span>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.505 }}>{`    12.00  `}</span>
       </p>
-      <p style={{ position: 'absolute', fontFamily: 'Poppins, sans-serif', lineHeight: 0, left: 314, fontStyle: 'normal', fontSize: 9, color: '#23d223', top: 1394, whiteSpace: 'pre' }}>
+      <p style={{ position: 'absolute', fontFamily: 'Poppins, sans-serif', lineHeight: 0, left: 314, fontStyle: 'normal', fontSize: 9, color: '#23d223', top: 1394 + yOffset, whiteSpace: 'pre', transition: 'top 0.3s ease' }}>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.505, color: '#22282c' }}>{`% of portfolio      `}</span>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.505, color: 'black' }}>100</span>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.505, color: '#ebf0ff' }}>{`  `}</span>
@@ -358,7 +360,7 @@ export default function VuluePage() {
       {/* ── Portfolio Sub-Account Card (Group 4970) ── */}
       <div style={{ position: 'absolute', display: 'contents', left: 19, top: 713 }}>
         {/* Card background */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', height: 382, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 713, width: 391 }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', height: cardExpanded ? 382 : 190, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 713, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }} />
 
         {/* Title — top: 737 */}
         <div style={{ position: 'absolute', left: 37, top: 737, width: 229 }}>
@@ -385,8 +387,29 @@ export default function VuluePage() {
         {/* Balance */}
         <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 830, left: 37, lineHeight: 1.28 }}>{data.balance}</p>
 
+        {/* See Less / See More toggle */}
+        {cardExpanded ? (
+          <div onClick={() => setCardExpanded(false)} style={{ position: 'absolute', left: 327, top: 820, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
+          </div>
+        ) : (
+          <div onClick={() => setCardExpanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 26, borderRadius: 15, top: 856, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
+          </div>
+        )}
+
+        {/* Holdings Floating PnL label + value — always visible */}
+        <div style={{ position: 'absolute', right: 40, top: 730, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
+          <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 10, color: '#525d7a', letterSpacing: '-0.408px', whiteSpace: 'nowrap' }}>Holdings Floating PnL</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+            <img alt="" style={{ width: 8, height: 8, flexShrink: 0 }} src={Polygon19} />
+            <span style={{ fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 12, color: '#05a54f', fontStyle: 'normal' }}>{data.floatingPnL}</span>
+          </div>
+        </div>
+
+        {/* Expanded-only content */}
+        {cardExpanded && (<>
         {/* Upload button */}
-        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 886, width: 50 }} />
         <div style={{ position: 'absolute', left: 48.375, top: 894.875, width: 26.25, height: 26.25 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector5} />
         </div>
@@ -434,15 +457,6 @@ export default function VuluePage() {
         </div>
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 'calc(50% - 117px)', color: '#2254d4', fontSize: 14, top: 958, width: 152 }}>Performance Summary</p>
 
-        {/* Holdings Floating PnL label + value below — right side */}
-        <div style={{ position: 'absolute', right: 40, top: 730, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
-          <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 10, color: '#525d7a', letterSpacing: '-0.408px', whiteSpace: 'nowrap' }}>Holdings Floating PnL</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-            <img alt="" style={{ width: 8, height: 8, flexShrink: 0 }} src={Polygon19} />
-            <span style={{ fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 12, color: '#05a54f', fontStyle: 'normal' }}>{data.floatingPnL}</span>
-          </div>
-        </div>
-
         {/* Trade button (blue) */}
         <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 944, width: 95 }} />
         <div style={{ position: 'absolute', height: 12, left: 327, top: 961, width: 30 }}>
@@ -481,6 +495,7 @@ export default function VuluePage() {
         <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 0.5px)', top: 865, width: 391 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke2} />
         </div>
+        </>)}
       </div>
 
     </div>
