@@ -7,7 +7,7 @@ import {
   IconCalendar, Group4794, Vector5, Arrow29, Ellipse372,
   Polygon19, Group4968, Vector6, Arrow28, Line7Stroke2,
 } from './assets/figma/index';
-import image279 from './assets/figma/image279.png';
+
 
 type Tab = 'FX' | 'Metals' | 'Energies' | 'Indices' | 'Bonds' | 'Equities' | 'Equities CFDs' | 'ETF CFDs' | 'Event Contracts';
 
@@ -502,11 +502,6 @@ export default function VuluePage() {
               <img alt="" style={{ width: 8, height: 8, flexShrink: 0 }} src={Polygon19} />
               <span style={{ fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 12, color: '#455a64', fontStyle: 'normal' }}>0.0%</span>
             </div>
-          </div>
-
-          {/* Profile image — left side */}
-          <div style={{ position: 'absolute', left: 32, top: 750, width: 100, height: 100, borderRadius: 150, overflow: 'hidden' }}>
-            <img alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} src={image279} />
           </div>
 
           {/* Delayed Execution Available */}
