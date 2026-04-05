@@ -6,6 +6,7 @@ import {
   Vector4, Line7Stroke, Line7Stroke1,
   IconCalendar, Group4794, Vector5, Arrow29, Ellipse372,
   Polygon19, Group4968, Vector6, Arrow28, Line7Stroke2,
+  Group4987, NgxLogo,
 } from './assets/figma/index';
 
 type Tab = 'FX' | 'Metals' | 'Energies' | 'Indices' | 'Bonds' | 'Equities' | 'Equities CFDs' | 'ETF CFDs' | 'Event Contracts';
@@ -413,7 +414,7 @@ export default function VuluePage() {
                   <rect key={s} x="0" y={s * (20/13)} width="20" height={20/13} fill={s % 2 === 0 ? '#B22234' : '#FFFFFF'} />
                 ))}
                 <rect x="0" y="0" width="8" height="10" fill="#3C3B6E" />
-                {[0,1,2,3,4].map((row) => [0,1,2,3].map((col) => (
+                {[0,1,2,3,4].flatMap((row) => [0,1,2,3].map((col) => (
                   <circle key={`${row}-${col}`} cx={col * 1.8 + 1} cy={row * 1.8 + 1} r="0.45" fill="white" />
                 )))}
               </svg>
