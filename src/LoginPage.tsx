@@ -4,6 +4,7 @@ import loginLine from './assets/figma/login-line.svg';
 import loginDot from './assets/figma/login-dot.svg';
 import loginDotActive from './assets/figma/login-dot-active.svg';
 import loginEye from './assets/figma/login-eye.svg';
+import darkBgEllipse from './assets/figma/dark-bg-ellipse.svg';
 
 export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,6 +21,15 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
 
   return (
     <div style={{ background: bg, position: 'relative', width: 430, height: 849, overflow: 'hidden', transition: 'background 0.3s ease' }}>
+
+      {/* ── Dark theme background ellipse glow ── */}
+      {dark && (
+        <div style={{ position: 'absolute', left: 50, top: -111, width: 466, height: 296, transform: 'rotate(3.39deg)', pointerEvents: 'none', overflow: 'visible' }}>
+          <div style={{ position: 'absolute', inset: '-37.12% -22.17%' }}>
+            <img alt="" style={{ display: 'block', width: '100%', height: '100%' }} src={darkBgEllipse} />
+          </div>
+        </div>
+      )}
 
       {/* ── Theme toggle button — top right ── */}
       <button
