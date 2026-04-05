@@ -4,7 +4,6 @@ import loginLine from './assets/figma/login-line.svg';
 import loginDot from './assets/figma/login-dot.svg';
 import loginDotActive from './assets/figma/login-dot-active.svg';
 import loginEye from './assets/figma/login-eye.svg';
-import loginArrow from './assets/figma/login-arrow.svg';
 
 export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
   const [showPassword, setShowPassword] = useState(false);
