@@ -398,7 +398,7 @@ export default function VuluePage() {
       {activeTab === 'Equities' && (
         <div style={{ position: 'absolute', transform: 'translateY(-50%)', display: 'flex', alignItems: 'center', gap: 4, right: 20, top: 730 }}>
           {equitySubAccounts.map((_, idx) => (
-            <div key={idx} onClick={() => setEquityIndex(idx)} style={{ width: idx === equityIndex ? 28 : 8, height: 4, borderRadius: 40, background: '#05a54f', opacity: idx === equityIndex ? 1 : 0.7, transition: 'all 0.2s ease', cursor: 'pointer' }} />
+            <div key={idx} onClick={() => setEquityIndex(idx)} style={{ width: idx === equityIndex ? 28 : 8, height: 4, borderRadius: 40, background: '#2254d4', opacity: idx === equityIndex ? 1 : 0.7, transition: 'all 0.2s ease', cursor: 'pointer' }} />
           ))}
         </div>
       )}
@@ -418,7 +418,7 @@ export default function VuluePage() {
               else if (dx > 40) setEquityIndex((i) => (i - 1 + equitySubAccounts.length) % equitySubAccounts.length);
             }
           }}
-          style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: activeTab === 'Equities' ? '2px solid #05a54f' : '2px solid #2254d4', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }}
+          style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }}
         />
 
         {/* Title — top: 737 */}
