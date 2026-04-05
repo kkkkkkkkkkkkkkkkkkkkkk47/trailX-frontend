@@ -66,6 +66,8 @@ export default function VuluePage() {
   ];
   const data = tabData[activeTab];
   const yOffset = cardExpanded ? 0 : -157;
+  const noDelayedRow = ['FX', 'Metals', 'Energies', 'Indices'].includes(activeTab);
+  const cardOffset = noDelayedRow ? -44 : 0;
   return (
     <div style={{ background: '#eef0f1', position: 'relative', width: '100%', height: '100%' }}>
 
@@ -424,7 +426,7 @@ export default function VuluePage() {
         </div>
       )}
 
-      {activeTab !== 'Event Contracts' && <div style={{ position: 'absolute', display: 'contents', left: 19, top: 750 }}>
+      {activeTab !== 'Event Contracts' && <div style={{ position: 'absolute', display: 'contents', left: 19, top: 750 + cardOffset }}>
         {/* Card background */}
         <div
           onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
@@ -443,11 +445,11 @@ export default function VuluePage() {
               else if (dx > 40) setEquityCfdIndex((i) => (i - 1 + equityCfdSubAccounts.length) % equityCfdSubAccounts.length);
             }
           }}
-          style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }}
+          style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750 + cardOffset, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }}
         />
 
-        {/* Title — top: 737 */}
-        <div style={{ position: 'absolute', left: 37, top: 774, width: 229 }}>
+        {/* Title — top: 737 + cardOffset */}
+        <div style={{ position: 'absolute', left: 37, top: 774 + cardOffset, width: 229 }}>
           <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>Portfolio Sub-Account</p>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             {activeTab === 'Bonds' && currentBond.flag === 'NG' && (
@@ -520,62 +522,62 @@ export default function VuluePage() {
         </div>
 
         {/* Real/Demo toggle */}
-        <div style={{ position: 'absolute', display: 'contents', left: 37, top: 835 }}>
-          <div style={{ position: 'absolute', background: '#22282c', height: 13, left: 37, borderRadius: 4, top: 835, width: 58 }} />
-          <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 37, borderRadius: 4, top: 835, width: 25 }} />
-          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 40, fontSize: 10, color: 'white', top: 836, width: 19 }}>Real</p>
-          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 65, color: '#455a64', fontSize: 10, top: 836, width: 27 }}>Demo</p>
+        <div style={{ position: 'absolute', display: 'contents', left: 37, top: 835 + cardOffset }}>
+          <div style={{ position: 'absolute', background: '#22282c', height: 13, left: 37, borderRadius: 4, top: 835 + cardOffset, width: 58 }} />
+          <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 37, borderRadius: 4, top: 835 + cardOffset, width: 25 }} />
+          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 40, fontSize: 10, color: 'white', top: 836 + cardOffset, width: 19 }}>Real</p>
+          <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 65, color: '#455a64', fontSize: 10, top: 836 + cardOffset, width: 27 }}>Demo</p>
         </div>
 
         {/* Standard toggle */}
-        <div style={{ position: 'absolute', display: 'contents', left: 97, top: 835 }}>
-          <div style={{ position: 'absolute', display: 'contents', left: 97, top: 835 }}>
-            <div style={{ position: 'absolute', background: '#22282c', height: 13, left: 97, borderRadius: 4, top: 835, width: 50 }} />
-            <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 101, color: '#a6a6a6', fontSize: 10, top: 836, width: 44 }}>Standard</p>
+        <div style={{ position: 'absolute', display: 'contents', left: 97, top: 835 + cardOffset }}>
+          <div style={{ position: 'absolute', display: 'contents', left: 97, top: 835 + cardOffset }}>
+            <div style={{ position: 'absolute', background: '#22282c', height: 13, left: 97, borderRadius: 4, top: 835 + cardOffset, width: 50 }} />
+            <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 101, color: '#a6a6a6', fontSize: 10, top: 836 + cardOffset, width: 44 }}>Standard</p>
           </div>
         </div>
 
         {/* Balance */}
-        <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 867, left: 37, lineHeight: 1.28 }}>{data.balance}</p>
+        <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 867 + cardOffset, left: 37, lineHeight: 1.28 }}>{data.balance}</p>
 
         {/* See Less / See More toggle */}
         {cardExpanded ? (
-          <div onClick={() => setCardExpanded(false)} style={{ position: 'absolute', left: 327, top: 857, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => setCardExpanded(false)} style={{ position: 'absolute', left: 327, top: 857 + cardOffset, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
           </div>
         ) : (
-          <div onClick={() => setCardExpanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 26, borderRadius: 15, top: 906, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => setCardExpanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 26, borderRadius: 15, top: 906 + cardOffset, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
           </div>
         )}
 
         {/* Holdings Floating PnL — Figma: center top=778, value top=782, polygon top=793 */}
-        <div style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', left: 345.5, top: 778, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: 85, letterSpacing: '-0.408px' }}>
+        <div style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', left: 345.5, top: 778 + cardOffset, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: 85, letterSpacing: '-0.408px' }}>
           <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 10, color: '#455a64', lineHeight: '22px' }}>Holdings Floating PnL</span>
         </div>
-        <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 12, color: '#455a64', top: 782, left: 358, lineHeight: '34px', height: 22, width: 44 }}>{data.floatingPnL}</p>
-        <div style={{ position: 'absolute', left: 343, top: 793, width: 12, height: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 12, color: '#455a64', top: 782 + cardOffset, left: 358, lineHeight: '34px', height: 22, width: 44 }}>{data.floatingPnL}</p>
+        <div style={{ position: 'absolute', left: 343, top: 793 + cardOffset, width: 12, height: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img alt="" style={{ width: 8, height: 8 }} src={Polygon19} />
         </div>
 
         {/* Expanded-only content */}
         {cardExpanded && (<>
         {/* Upload button */}
-        <div style={{ position: 'absolute', left: 48.375, top: 931.875, width: 26.25, height: 26.25 }}>
+        <div style={{ position: 'absolute', left: 48.375, top: 931.875 + cardOffset, width: 26.25, height: 26.25 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector5} />
         </div>
 
         {/* Arrow button */}
-        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 193, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 923, width: 95 }} />
-        <div style={{ position: 'absolute', height: 6.222, left: 227, top: 944, width: 22.5 }}>
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 193, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 923 + cardOffset, width: 95 }} />
+        <div style={{ position: 'absolute', height: 6.222, left: 227, top: 944 + cardOffset, width: 22.5 }}>
           <div style={{ position: 'absolute', inset: '-58.14% -11.97% -16.07% -4.44%' }}>
             <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Arrow29} />
           </div>
         </div>
 
         {/* Swap button */}
-        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 923, width: 95 }} />
-        <div style={{ position: 'absolute', display: 'flex', height: 16.857, alignItems: 'center', justifyContent: 'center', left: 333, top: 940, width: 17.805 }}>
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 923 + cardOffset, width: 95 }} />
+        <div style={{ position: 'absolute', display: 'flex', height: 16.857, alignItems: 'center', justifyContent: 'center', left: 333, top: 940 + cardOffset, width: 17.805 }}>
           <div style={{ flex: 'none', transform: 'rotate(-60.85deg) skewX(1.53deg)' }}>
             <div style={{ height: 13.393, position: 'relative', width: 12.192 }}>
               <div style={{ position: 'absolute', inset: '-54.98% -8.2% -7.47% -8.2%' }}>
@@ -586,53 +588,53 @@ export default function VuluePage() {
         </div>
 
         {/* Chart bars button */}
-        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 92, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 923, width: 95 }} />
-        <div style={{ position: 'absolute', display: 'contents', left: 129, top: 936 }}>
-          <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid white', height: 10.25, left: 129, borderRadius: 1, top: 936, width: 3.6 }} />
-          <div style={{ position: 'absolute', background: '#c80808', border: '1px solid white', height: 10.25, left: 136.2, borderRadius: 1, top: 946.25, width: 3.6 }} />
-          <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid white', height: 10.25, left: 143.4, borderRadius: 1, top: 940.1, width: 3.6 }} />
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 92, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 923 + cardOffset, width: 95 }} />
+        <div style={{ position: 'absolute', display: 'contents', left: 129, top: 936 + cardOffset }}>
+          <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid white', height: 10.25, left: 129, borderRadius: 1, top: 936 + cardOffset, width: 3.6 }} />
+          <div style={{ position: 'absolute', background: '#c80808', border: '1px solid white', height: 10.25, left: 136.2, borderRadius: 1, top: 946.25 + cardOffset, width: 3.6 }} />
+          <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid white', height: 10.25, left: 143.4, borderRadius: 1, top: 940.1 + cardOffset, width: 3.6 }} />
         </div>
 
         {/* Performance Summary button */}
-        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 981, width: 256 }} />
-        <div style={{ position: 'absolute', display: 'contents', left: 52, top: 993 }}>
-          <div style={{ position: 'absolute', display: 'contents', left: 52, top: 993 }}>
-            <div style={{ position: 'absolute', background: '#2254d4', height: 15.999, left: 52, borderRadius: '1px 1px 0 0', top: 993, width: 4.154 }} />
-            <div style={{ position: 'absolute', display: 'flex', height: 5.714, alignItems: 'center', justifyContent: 'center', left: 58.92, top: 1009.29, width: 4.154 }}>
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 981 + cardOffset, width: 256 }} />
+        <div style={{ position: 'absolute', display: 'contents', left: 52, top: 993 + cardOffset }}>
+          <div style={{ position: 'absolute', display: 'contents', left: 52, top: 993 + cardOffset }}>
+            <div style={{ position: 'absolute', background: '#2254d4', height: 15.999, left: 52, borderRadius: '1px 1px 0 0', top: 993 + cardOffset, width: 4.154 }} />
+            <div style={{ position: 'absolute', display: 'flex', height: 5.714, alignItems: 'center', justifyContent: 'center', left: 58.92, top: 1009.29 + cardOffset, width: 4.154 }}>
               <div style={{ transform: 'scaleY(-1)', flex: 'none' }}>
                 <div style={{ background: '#2254d4', height: 5.714, borderRadius: '1px 1px 0 0', width: 4.154 }} />
               </div>
             </div>
-            <div style={{ position: 'absolute', background: '#2254d4', height: 12.57, left: 65.85, borderRadius: '1px 1px 0 0', top: 996.43, width: 4.154 }} />
+            <div style={{ position: 'absolute', background: '#2254d4', height: 12.57, left: 65.85, borderRadius: '1px 1px 0 0', top: 996.43 + cardOffset, width: 4.154 }} />
           </div>
         </div>
-        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 98, color: '#2254d4', fontSize: 14, top: 995, width: 152 }}>Performance Summary</p>
+        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 98, color: '#2254d4', fontSize: 14, top: 995 + cardOffset, width: 152 }}>Performance Summary</p>
 
         {/* Trade button (blue) */}
-        <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 981, width: 95 }} />
-        <div style={{ position: 'absolute', height: 12, left: 327, top: 998, width: 30 }}>
+        <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 981 + cardOffset, width: 95 }} />
+        <div style={{ position: 'absolute', height: 12, left: 327, top: 998 + cardOffset, width: 30 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4968} />
         </div>
 
         {/* Frosted glass panel */}
-        <div style={{ position: 'absolute', display: 'flex', height: 79, alignItems: 'center', justifyContent: 'center', left: 36, top: 1039, width: 358 }}>
+        <div style={{ position: 'absolute', display: 'flex', height: 79, alignItems: 'center', justifyContent: 'center', left: 36, top: 1039 + cardOffset, width: 358 }}>
           <div style={{ transform: 'rotate(-90deg)', flex: 'none' }}>
             <div style={{ backdropFilter: 'blur(2px)', background: 'rgba(34,40,44,0.1)', border: '0.5px solid #0a2ddb', height: 358, borderRadius: 15, width: 79 }} />
           </div>
         </div>
 
         {/* Vector6 */}
-        <div style={{ position: 'absolute', left: 49, top: 1067, width: 22, height: 19 }}>
+        <div style={{ position: 'absolute', left: 49, top: 1067 + cardOffset, width: 22, height: 19 }}>
           <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector6} />
         </div>
 
         {/* Strategy text */}
-        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 'calc(50% - 127px)', color: '#22282c', fontSize: 13, top: 1058, width: 207 }}>
+        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 'calc(50% - 127px)', color: '#22282c', fontSize: 13, top: 1058 + cardOffset, width: 207 }}>
           Strategy Tethering and Portfolio Mirroring marketplace
         </p>
 
         {/* Arrow28 */}
-        <div style={{ position: 'absolute', display: 'flex', height: 9.564, alignItems: 'center', justifyContent: 'center', left: 342, top: 1072, width: 12.982 }}>
+        <div style={{ position: 'absolute', display: 'flex', height: 9.564, alignItems: 'center', justifyContent: 'center', left: 342, top: 1072 + cardOffset, width: 12.982 }}>
           <div style={{ flex: 'none', transform: 'rotate(-36.38deg)' }}>
             <div style={{ height: 0, position: 'relative', width: 16.125 }}>
               <div style={{ position: 'absolute', inset: '-7.36px -6.2%' }}>
@@ -643,7 +645,7 @@ export default function VuluePage() {
         </div>
 
         {/* Divider inside card */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 1px)', top: 902, width: 386 }}>
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 1px)', top: 902 + cardOffset, width: 386 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke2} />
         </div>
         </>)}
