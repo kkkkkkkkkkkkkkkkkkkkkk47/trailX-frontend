@@ -316,10 +316,6 @@ export default function VuluePage() {
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 14, color: 'white' }}>Add custom Sub-Account</span>
       </div>
 
-      {/* Vector4 chevron */}
-      <div style={{ position: 'absolute', height: 5, left: 180, top: 431, width: 9 }}>
-        <div style={{ position: 'absolute', inset: '-15% -8.33%' }}>
-          <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector4} />
         </div>
       </div>
 
