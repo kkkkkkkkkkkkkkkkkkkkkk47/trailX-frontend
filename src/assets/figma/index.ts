@@ -30,6 +30,13 @@ import Arrow28 from './Arrow28.svg';
 import Line7Stroke2 from './Line7Stroke2.svg';
 import Group4987 from './Group4987.svg';
 import NgxLogo from './ngx-logo.png';
+import UsStocks from './us-stocks.png';
+import LseStocks from './lse-stocks.png';
+import EuronextStocks from './euronext-stocks.png';
+import JpxStocks from './jpx-stocks.png';
+import HkStocks from './hk-stocks.png';
+import PolandStocks from './poland-stocks.png';
+import FrankfurtStocks from './frankfurt-stocks.png';
 
 export {
   Rectangle1040, Vector, Rectangle1556, Group4802, Group4941,
@@ -39,4 +46,5 @@ export {
   IconCalendar, Group4794, Vector5, Arrow29, Ellipse372,
   Polygon19, Group4968, Vector6, Arrow28, Line7Stroke2,
   Group4987, NgxLogo,
+  UsStocks, LseStocks, EuronextStocks, JpxStocks, HkStocks, PolandStocks, FrankfurtStocks,
 };

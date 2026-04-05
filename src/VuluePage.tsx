@@ -7,6 +7,7 @@ import {
   IconCalendar, Group4794, Vector5, Arrow29, Ellipse372,
   Polygon19, Group4968, Vector6, Arrow28, Line7Stroke2,
   Group4987, NgxLogo,
+  UsStocks, LseStocks, EuronextStocks, JpxStocks, HkStocks, PolandStocks, FrankfurtStocks,
 } from './assets/figma/index';
 
 type Tab = 'FX' | 'Metals' | 'Energies' | 'Indices' | 'Bonds' | 'Equities' | 'Equities CFDs' | 'ETF CFDs' | 'Event Contracts';
@@ -37,6 +38,18 @@ export default function VuluePage() {
     { name: 'UAE Bonds', flag: 'AE' },
   ];
   const currentBond = bondSubAccounts[bondIndex];
+  const [equityIndex, setEquityIndex] = useState(0);
+  const equitySubAccounts = [
+    { name: 'NGX Stocks',             logo: NgxLogo },
+    { name: 'US Stocks',              logo: UsStocks },
+    { name: 'LSE Stocks',             logo: LseStocks },
+    { name: 'EuroNext Stocks',        logo: EuronextStocks },
+    { name: 'JPX Stocks',             logo: JpxStocks },
+    { name: 'Hong Kong Stocks',       logo: HkStocks },
+    { name: 'Poland Stocks',          logo: PolandStocks },
+    { name: 'Frankfurt Exotic Stocks',logo: FrankfurtStocks },
+  ];
+  const currentEquity = equitySubAccounts[equityIndex];
   const data = tabData[activeTab];
   const yOffset = cardExpanded ? 0 : -157;
   return (
@@ -382,6 +395,13 @@ export default function VuluePage() {
           ))}
         </div>
       )}
+      {activeTab === 'Equities' && (
+        <div style={{ position: 'absolute', transform: 'translateY(-50%)', display: 'flex', alignItems: 'center', gap: 4, right: 20, top: 730 }}>
+          {equitySubAccounts.map((_, idx) => (
+            <div key={idx} onClick={() => setEquityIndex(idx)} style={{ width: idx === equityIndex ? 28 : 8, height: 4, borderRadius: 40, background: '#05a54f', opacity: idx === equityIndex ? 1 : 0.7, transition: 'all 0.2s ease', cursor: 'pointer' }} />
+          ))}
+        </div>
+      )}
 
       <div style={{ position: 'absolute', display: 'contents', left: 19, top: 750 }}>
         {/* Card background */}
@@ -392,6 +412,10 @@ export default function VuluePage() {
             if (activeTab === 'Bonds') {
               if (dx < -40) setBondIndex((i) => (i + 1) % bondSubAccounts.length);
               else if (dx > 40) setBondIndex((i) => (i - 1 + bondSubAccounts.length) % bondSubAccounts.length);
+            }
+            if (activeTab === 'Equities') {
+              if (dx < -40) setEquityIndex((i) => (i + 1) % equitySubAccounts.length);
+              else if (dx > 40) setEquityIndex((i) => (i - 1 + equitySubAccounts.length) % equitySubAccounts.length);
             }
           }}
           style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: activeTab === 'Equities' ? '2px solid #05a54f' : '2px solid #2254d4', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }}
@@ -450,10 +474,10 @@ export default function VuluePage() {
               </svg>
             )}
             {activeTab === 'Equities' && (
-              <img src={NgxLogo} alt="NGX" style={{ width: 15, height: 15, borderRadius: 30, objectFit: 'cover', flexShrink: 0 }} />
+              <img src={currentEquity.logo} alt={currentEquity.name} style={{ width: 15, height: 15, borderRadius: 30, objectFit: 'cover', flexShrink: 0 }} />
             )}
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 300, lineHeight: 1.2, margin: 0, color: '#22282c', fontSize: 16 }}>
-              {activeTab === 'Bonds' ? currentBond.name : data.subAccount}
+              {activeTab === 'Bonds' ? currentBond.name : activeTab === 'Equities' ? currentEquity.name : data.subAccount}
             </p>
           </div>
 
