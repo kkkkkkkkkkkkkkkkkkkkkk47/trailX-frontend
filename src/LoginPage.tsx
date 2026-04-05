@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import loginLogo from './assets/figma/login-logo.svg';
+import loginLogo from './assets/figma/login-logo.png';
 import loginLine from './assets/figma/login-line.svg';
 import loginDot from './assets/figma/login-dot.svg';
 import loginDotActive from './assets/figma/login-dot-active.svg';
@@ -13,7 +13,7 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
 
       {/* ── trailX heading — x=36, y=58, w=223, h=44 ── */}
       <p style={{ position: 'absolute', left: 36, top: 58, width: 223, height: 44, fontFamily: 'Urbanist, sans-serif', fontSize: 0, lineHeight: 0, color: '#1410b1', margin: 0 }}>
-        <span style={{ fontWeight: 500, fontSize: 40, lineHeight: '1.28' }}>trail</span>
+        <span style={{ fontWeight: 500, fontSize: 40, lineHeight: '1.28' }}>Trail</span>
         <span style={{ fontWeight: 200, fontStyle: 'italic', fontSize: 40, lineHeight: '1.28' }}>X</span>
       </p>
 
