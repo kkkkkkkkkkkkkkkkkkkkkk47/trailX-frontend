@@ -3,7 +3,7 @@ import {
   Rectangle1040, Vector, Rectangle1556, Group4802, Group4941,
   Ellipse371, Vector1, Arrow26, Ellipse353, Ellipse354,
   Group4951, Line160, Ellipse243, Vector2, Group4957,
-  Ellipse244, Vector4, Line7Stroke, Line7Stroke1,
+  Vector4, Line7Stroke, Line7Stroke1,
   IconCalendar, Group4794, Vector5, Arrow29, Ellipse372,
   Polygon19, Group4968, Vector6, Arrow28, Line7Stroke2,
 } from './assets/figma/index';
