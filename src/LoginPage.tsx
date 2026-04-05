@@ -41,14 +41,16 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
       </div>
 
       {/* ── Account type selector — x=36, y=208, w=360, h=51 ── */}
-      <div style={{ position: 'absolute', left: 36, top: 208, width: 360, height: 51, backdropFilter: 'blur(2px)', background: 'rgba(17,70,246,0.7)', border: '1px solid #2254d4', borderRadius: 15 }} />
+      <div style={{ position: 'absolute', left: 36, top: 208, width: 360, height: 51, backdropFilter: 'blur(2px)', background: 'rgba(17,70,246,0.7)', borderRadius: 15 }} />
       {/* label — x=57, y=228 */}
       <p style={{ position: 'absolute', left: 57, top: 228, fontFamily: "'Anek Odia', sans-serif", fontWeight: 400, fontSize: 16, color: 'white', lineHeight: '1.28', margin: 0, whiteSpace: 'nowrap' }}>
         Individual Account
       </p>
-      {/* arrow — x=369.5, y=238.6, w=13.5, h=8.6 */}
-      <div style={{ position: 'absolute', left: 369.5, top: 238.6, width: 13.5, height: 8.6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <img alt="" style={{ width: '100%', height: '100%', transform: 'rotate(-90deg) scaleY(-1)' }} src={loginArrow} />
+      {/* dropdown chevron — right side of account box, vertically centered */}
+      <div style={{ position: 'absolute', left: 362, top: 233, width: 13.5, height: 8.6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L6.5 7L12 1" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </div>
 
       {/* ── Email input — x=36, y=275, w=360, h=51 ── */}
