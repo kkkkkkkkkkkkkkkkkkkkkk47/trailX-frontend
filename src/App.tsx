@@ -3,7 +3,7 @@ import VuluePage from './VuluePage';
 import LoginPage from './LoginPage';
 
 const DESIGN_WIDTH = 430;
-const DESIGN_HEIGHT = 1579;
+const DESIGN_HEIGHT = 1698;
 const LOGIN_HEIGHT = 849;
 
 function ScaledPage({ children, designHeight }: { children: React.ReactNode; designHeight: number }) {
