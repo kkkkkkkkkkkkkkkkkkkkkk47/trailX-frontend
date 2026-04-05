@@ -398,7 +398,7 @@ export default function VuluePage() {
       {/* ── Portfolio Sub-Account Card (Group 4970) ── */}
       {/* Delayed Execution Available */}
       {/* Text: left=89.5, center-y=730 | Pills: top=728 | Figma node 3069:1734 */}
-      {activeTab !== 'Event Contracts' && <p style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 12, color: '#455a64', textAlign: 'center', left: 89.5, top: 730, width: 141, letterSpacing: '-0.408px', lineHeight: '22px', whiteSpace: 'nowrap' }}>
+      {activeTab === 'Bonds' || activeTab === 'Equities' || activeTab === 'Equities CFDs' || activeTab === 'ETF CFDs' && <p style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 12, color: '#455a64', textAlign: 'center', left: 89.5, top: 730, width: 141, letterSpacing: '-0.408px', lineHeight: '22px', whiteSpace: 'nowrap' }}>
         {activeTab === 'Equities' || activeTab === 'Equities CFDs' ? 'Real & Near Real Time Execution Available' : 'Delayed Execution Available'}
       </p>}
       {/* Bond sub-account scroll indicator — right side of Delayed Execution row */}
