@@ -16,11 +16,12 @@ function ScaledPage({ children, designHeight }: { children: React.ReactNode; des
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  // Scale to fill width, but also ensure it fills the full viewport height for login
-  const scaleByWidth = vw / DESIGN_WIDTH;
-  const scaleByHeight = vh / designHeight;
-  // Use whichever fills the screen better without overflowing width
-  const scale = Math.min(scaleByWidth, designHeight === LOGIN_HEIGHT ? scaleByHeight : scaleByWidth);
+  // Scale to fill width on mobile, cap at 1 on desktop
+  const scaleByWidth = Math.min(1, vw / DESIGN_WIDTH);
+  const scaleByHeight = Math.min(1, vh / designHeight);
+  const scale = designHeight === LOGIN_HEIGHT
+    ? Math.min(scaleByWidth, scaleByHeight)
+    : scaleByWidth;
 
   const scaledW = DESIGN_WIDTH * scale;
   const scaledH = designHeight * scale;
