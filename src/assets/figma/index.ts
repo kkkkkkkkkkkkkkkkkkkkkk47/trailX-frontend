@@ -28,6 +28,8 @@ import Group4968 from './Group4968.svg';
 import Vector6 from './Vector6.svg';
 import Arrow28 from './Arrow28.svg';
 import Line7Stroke2 from './Line7Stroke2.svg';
+import Group4987 from './Group4987.svg';
+import NgxLogo from './ngx-logo.png';
 
 export {
   Rectangle1040, Vector, Rectangle1556, Group4802, Group4941,
@@ -36,4 +38,5 @@ export {
   Ellipse244, Vector3, Vector4, Line7Stroke, Line7Stroke1,
   IconCalendar, Group4794, Vector5, Arrow29, Ellipse372,
   Polygon19, Group4968, Vector6, Arrow28, Line7Stroke2,
+  Group4987, NgxLogo,
 };
