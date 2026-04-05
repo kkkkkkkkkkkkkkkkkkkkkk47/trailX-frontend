@@ -91,7 +91,7 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
       {/* ── Password input — x=36, y=342, w=360, h=51 ── */}
       <div style={{ position: 'absolute', left: 36, top: 342, width: 360, height: 51, backdropFilter: 'blur(2px)', background: passwordBg, border: '1px solid white', borderRadius: 15, opacity: 0.7 }} />
       {[58, 75, 92, 109, 126, 143].map((x, i) => (
-        <div key={i} style={{ position: 'absolute', left: x, top: 357, width: 8, height: 8 }}>
+        <div key={i} style={{ position: 'absolute', left: x, top: 357, width: 8, height: 8, filter: dark ? 'brightness(0) invert(1)' : 'none' }}>
           <img alt="" style={{ width: '100%', height: '100%' }} src={i === 4 ? loginDotActive : loginDot} />
         </div>
       ))}
