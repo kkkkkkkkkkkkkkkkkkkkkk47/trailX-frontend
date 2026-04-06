@@ -2,11 +2,11 @@ import { useState, useRef } from 'react';
 import {
   Rectangle1040, Vector, Rectangle1556, Group4802, Group4941,
   Ellipse371, Vector1, Arrow26, Ellipse353, Ellipse354,
-  Group4951, Line160, Ellipse243, Vector2, Group4957,
-  Vector4, Line7Stroke, Line7Stroke1,
+  Group4951, Ellipse243, Vector2, Group4957,
+  Line7Stroke, Line7Stroke1,
   IconCalendar, Group4794, Vector5, Arrow29, Ellipse372,
   Polygon19, Group4968, Vector6, Arrow28, Line7Stroke2,
-  Group4987, NgxLogo, Group4984,
+  NgxLogo, Group4984,
   UsStocks, LseStocks, EuronextStocks, JpxStocks, HkStocks, PolandStocks, FrankfurtStocks,
 } from './assets/figma/index';
 
@@ -57,13 +57,6 @@ export default function VuluePage() {
     { name: 'UAE Stock CFDs',       logo: null },
   ];
   const currentEquityCfd = equityCfdSubAccounts[equityCfdIndex];
-  const [eventExpandedIndex, setEventExpandedIndex] = useState(0);
-  const eventContracts = [
-    'Crypto Events Contracts',
-    'Economics Events Contracts',
-    'Financials Events Contracts',
-    'IPOs Events Contracts',
-  ];
   const data = tabData[activeTab];
   const yOffset = cardExpanded ? 0 : -157;
   const noDelayedRow = ['FX', 'Metals', 'Energies', 'Indices'].includes(activeTab);
@@ -390,7 +383,7 @@ export default function VuluePage() {
       {/* ── Portfolio Sub-Account Card (Group 4970) ── */}
       {/* Delayed Execution Available */}
       {/* Text: left=89.5, center-y=730 | Pills: top=728 | Figma node 3069:1734 */}
-      {activeTab === 'Bonds' || activeTab === 'Equities' || activeTab === 'Equities CFDs' || activeTab === 'ETF CFDs' && <p style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 12, color: '#455a64', textAlign: 'center', left: 89.5, top: 730, width: 141, letterSpacing: '-0.408px', lineHeight: '22px', whiteSpace: 'nowrap' }}>
+      {(activeTab === 'Bonds' || activeTab === 'Equities' || activeTab === 'Equities CFDs' || activeTab === 'ETF CFDs') && <p style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 12, color: '#455a64', textAlign: 'center', left: 89.5, top: 730, width: 141, letterSpacing: '-0.408px', lineHeight: '22px', whiteSpace: 'nowrap' }}>
         {activeTab === 'Equities' || activeTab === 'Equities CFDs' ? 'Real & Near Real Time Execution Available' : 'Delayed Execution Available'}
       </p>}
       {/* Bond sub-account scroll indicator — right side of Delayed Execution row */}
