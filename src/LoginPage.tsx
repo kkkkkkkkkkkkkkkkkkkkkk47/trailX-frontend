@@ -16,7 +16,7 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
   const inputBg = dark ? 'rgba(255,255,255,0.08)' : 'rgba(100,135,225,0.2)';
   const passwordBg = dark ? 'rgba(255,255,255,0.08)' : '#e3eaf7';
   const accountBg = dark ? 'rgba(255,255,255,0.12)' : 'rgba(17,70,246,0.7)';
-  const stripeColor = dark ? 'rgba(255,255,255,0.15)' : 'white';
+  const stripeColor = dark ? 'white' : 'white';
   const vulueTxtColor = dark ? 'white' : '#1410b1';
 
   return (
@@ -53,7 +53,7 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
 
       {/* ── trailX heading — x=36, y=58, w=223, h=44 ── */}
       <p style={{ position: 'absolute', left: 36, top: 58, width: 223, height: 44, fontFamily: 'Urbanist, sans-serif', fontSize: 0, lineHeight: 0, color: textPrimary, margin: 0 }}>
-        <span style={{ fontWeight: 500, fontSize: 40, lineHeight: '1.28' }}>Trail</span>
+        <span style={{ fontWeight: 500, fontSize: 40, lineHeight: '1.28', color: dark ? 'white' : '#1410b1' }}>Trail</span>
         <span style={{ fontWeight: 200, fontStyle: 'italic', fontSize: 40, lineHeight: '1.28', color: dark ? 'white' : '#1410b1' }}>X</span>
       </p>
 
