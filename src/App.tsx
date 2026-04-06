@@ -4,7 +4,8 @@ import LoginPage from './LoginPage';
 
 const DESIGN_WIDTH = 430;
 const DESIGN_HEIGHT = 1698;
-const LOGIN_HEIGHT = 849;
+const LOGIN_HEIGHT = 920;
+const LOGIN_WIDTH = 460;
 
 function ScaledPage({ children, designHeight, bg = '#f7fafb' }: { children: React.ReactNode; designHeight: number; bg?: string }) {
   const [vw, setVw] = useState(window.innerWidth);
@@ -19,17 +20,18 @@ function ScaledPage({ children, designHeight, bg = '#f7fafb' }: { children: Reac
   // Scale to fill width on mobile, cap at 1 on desktop
   const scaleByWidth = Math.min(1, vw / DESIGN_WIDTH);
   const scaleByHeight = Math.min(1, vh / designHeight);
+  const loginScale = Math.min(vw / LOGIN_WIDTH, vh / LOGIN_HEIGHT);
   const scale = designHeight === LOGIN_HEIGHT
-    ? Math.min(scaleByWidth, scaleByHeight)
+    ? loginScale
     : scaleByWidth;
 
-  const scaledW = DESIGN_WIDTH * scale;
+  const scaledW = (designHeight === LOGIN_HEIGHT ? LOGIN_WIDTH : DESIGN_WIDTH) * scale;
   const scaledH = designHeight * scale;
 
   return (
     <div style={{ width: '100vw', height: '100vh', overflow: designHeight > LOGIN_HEIGHT ? 'auto' : 'hidden', background: bg, display: 'flex', justifyContent: 'center', alignItems: designHeight === LOGIN_HEIGHT ? 'center' : 'flex-start' }}>
       <div style={{ width: scaledW, height: scaledH, position: 'relative', flexShrink: 0 }}>
-        <div style={{ width: DESIGN_WIDTH, height: designHeight, position: 'absolute', top: 0, left: 0, transformOrigin: 'top left', transform: `scale(${scale})` }}>
+        <div style={{ width: designHeight === LOGIN_HEIGHT ? LOGIN_WIDTH : DESIGN_WIDTH, height: designHeight, position: 'absolute', top: 0, left: 0, transformOrigin: 'top left', transform: `scale(${scale})` }}>
           {children}
         </div>
       </div>
