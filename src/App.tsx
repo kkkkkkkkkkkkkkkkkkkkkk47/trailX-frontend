@@ -20,7 +20,7 @@ function ScaledPage({ children, designHeight, bg = '#f7fafb' }: { children: Reac
   const scaleByWidth = Math.min(1, vw / DESIGN_WIDTH);
   const scaleByHeight = Math.min(1, vh / designHeight);
   const scale = designHeight === LOGIN_HEIGHT
-    ? Math.max(vw / DESIGN_WIDTH, vh / LOGIN_HEIGHT)  // cover: fill full screen
+    ? Math.min(scaleByWidth, scaleByHeight)
     : scaleByWidth;
 
   const scaledW = DESIGN_WIDTH * scale;
