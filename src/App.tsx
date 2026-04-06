@@ -40,7 +40,30 @@ function ScaledPage({ children, designHeight, bg = '#f7fafb' }: { children: Reac
 export default function App() {
   const [page, setPage] = useState<'login' | 'main'>('login');
 
-  return page === 'login'
-    ? <ScaledPage designHeight={LOGIN_HEIGHT}><LoginPage onLogin={() => setPage('main')} /></ScaledPage>
-    : <ScaledPage designHeight={DESIGN_HEIGHT} bg="#eef0f1"><VuluePage /></ScaledPage>;
+  if (page === 'login') {
+    return <LoginFullScreen onLogin={() => setPage('main')} />;
+  }
+  return <ScaledPage designHeight={DESIGN_HEIGHT} bg="#eef0f1"><VuluePage /></ScaledPage>;
+}
+
+function LoginFullScreen({ onLogin }: { onLogin: () => void }) {
+  const [vw, setVw] = useState(window.innerWidth);
+  const [vh, setVh] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const onResize = () => { setVw(window.innerWidth); setVh(window.innerHeight); };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  const scaleX = vw / 430;
+  const scaleY = vh / 849;
+
+  return (
+    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', background: '#1410b1' }}>
+      <div style={{ width: 430, height: 849, transformOrigin: 'top left', transform: `scale(${scaleX}, ${scaleY})` }}>
+        <LoginPage onLogin={onLogin} />
+      </div>
+    </div>
+  );
 }
