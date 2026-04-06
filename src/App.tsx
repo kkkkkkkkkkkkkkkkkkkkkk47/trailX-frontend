@@ -56,12 +56,15 @@ function LoginFullScreen({ onLogin }: { onLogin: () => void }) {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  const scaleX = vw / 430;
-  const scaleY = vh / 849;
+  const isMobile = vw <= 480;
+
+  // Mobile: stretch to fill screen. Desktop: center at natural size.
+  const scaleX = isMobile ? vw / 430 : 1;
+  const scaleY = isMobile ? vh / 849 : 1;
 
   return (
-    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', background: '#1410b1' }}>
-      <div style={{ width: 430, height: 849, transformOrigin: 'top left', transform: `scale(${scaleX}, ${scaleY})` }}>
+    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', background: '#1410b1', display: isMobile ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ width: 430, height: 849, transformOrigin: 'top left', transform: isMobile ? `scale(${scaleX}, ${scaleY})` : 'none', borderRadius: isMobile ? 0 : 24, overflow: 'hidden', flexShrink: 0 }}>
         <LoginPage onLogin={onLogin} />
       </div>
     </div>
