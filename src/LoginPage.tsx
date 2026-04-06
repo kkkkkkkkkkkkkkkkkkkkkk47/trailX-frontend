@@ -10,7 +10,7 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div style={{ background: '#1410b1', position: 'relative', width: 460, height: 920, overflow: 'hidden' }}>
+    <div style={{ background: '#1410b1', position: 'relative', width: 430, height: 849, overflow: 'hidden' }}>
 
       {/* ── Background ellipse glow ── */}
       <div style={{ position: 'absolute', left: 50, top: -111, width: 466, height: 296, transform: 'rotate(3.39deg)', pointerEvents: 'none', overflow: 'visible' }}>
