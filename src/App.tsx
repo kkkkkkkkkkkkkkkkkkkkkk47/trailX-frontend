@@ -20,7 +20,7 @@ function ScaledPage({ children, designHeight, bg = '#f7fafb' }: { children: Reac
   const scaleByWidth = Math.min(1, vw / DESIGN_WIDTH);
   const scaleByHeight = Math.min(1, vh / designHeight);
   const scale = designHeight === LOGIN_HEIGHT
-    ? Math.min(scaleByWidth, scaleByHeight)
+    ? Math.max(vw / DESIGN_WIDTH, vh / LOGIN_HEIGHT)  // cover: fill full screen
     : scaleByWidth;
 
   const scaledW = DESIGN_WIDTH * scale;
@@ -41,6 +41,6 @@ export default function App() {
   const [page, setPage] = useState<'login' | 'main'>('login');
 
   return page === 'login'
-    ? <ScaledPage designHeight={LOGIN_HEIGHT} bg="#1410b1"><LoginPage onLogin={() => setPage('main')} /></ScaledPage>
+    ? <ScaledPage designHeight={LOGIN_HEIGHT}><LoginPage onLogin={() => setPage('main')} /></ScaledPage>
     : <ScaledPage designHeight={DESIGN_HEIGHT} bg="#eef0f1"><VuluePage /></ScaledPage>;
 }
