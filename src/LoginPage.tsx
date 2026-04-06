@@ -8,7 +8,7 @@ import darkBgEllipse from './assets/figma/dark-bg-ellipse.svg';
 
 export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
   const [showPassword, setShowPassword] = useState(false);
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
 
   const bg = dark ? '#1410b1' : '#f7fafb';
   const textPrimary = dark ? 'white' : '#1410b1';
