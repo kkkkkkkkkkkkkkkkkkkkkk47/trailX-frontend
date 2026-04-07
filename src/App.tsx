@@ -6,7 +6,7 @@ const DESIGN_WIDTH = 430;
 const DESIGN_HEIGHT = 1698;
 const LOGIN_HEIGHT = 849;
 
-function ScaledPage({ children, designHeight, bg = '#f7fafb' }: { children: React.ReactNode; designHeight: number; bg?: string }) {
+function ScaledPage({ children, designHeight, scrollable = false, bg = '#f7fafb' }: { children: React.ReactNode; designHeight: number; scrollable?: boolean; bg?: string }) {
   const [vw, setVw] = useState(window.innerWidth);
   const [vh, setVh] = useState(window.innerHeight);
 
@@ -27,7 +27,7 @@ function ScaledPage({ children, designHeight, bg = '#f7fafb' }: { children: Reac
   const scaledH = designHeight * scale;
 
   return (
-    <div style={{ width: '100vw', height: '100vh', overflow: designHeight > LOGIN_HEIGHT ? 'auto' : 'hidden', background: bg, display: 'flex', justifyContent: 'center', alignItems: designHeight === LOGIN_HEIGHT ? 'center' : 'flex-start' }}>
+    <div style={{ width: '100vw', height: '100vh', overflow: scrollable ? 'auto' : 'hidden', background: bg, display: 'flex', justifyContent: 'center', alignItems: scrollable ? 'flex-start' : 'center' }}>
       <div style={{ width: scaledW, height: scaledH, position: 'relative', flexShrink: 0 }}>
         <div style={{ width: DESIGN_WIDTH, height: designHeight, position: 'absolute', top: 0, left: 0, transformOrigin: 'top left', transform: `scale(${scale})` }}>
           {children}
@@ -40,16 +40,16 @@ function ScaledPage({ children, designHeight, bg = '#f7fafb' }: { children: Reac
 export default function App() {
   const [page, setPage] = useState<'login' | 'main'>('login');
   const [activeTab, setActiveTab] = useState('FX');
-  const [eventExpandedCount, setEventExpandedCount] = useState(0);
+  const [eventCardsBottom, setEventCardsBottom] = useState(1532); // 706+226+10+190+10+190+10+190
 
   if (page === 'login') {
     return <LoginFullScreen onLogin={() => setPage('main')} />;
   }
   // Event Contracts: base 1100px + 382px per expanded card (4 cards collapsed = ~1100, all expanded = ~2628)
   const designHeight = activeTab === 'Event Contracts'
-    ? 1300 + eventExpandedCount * 382
+    ? eventCardsBottom + 100
     : DESIGN_HEIGHT;
-  return <ScaledPage designHeight={designHeight} bg="#eef0f1"><VuluePage onTabChange={setActiveTab} onEventExpandedChange={setEventExpandedCount} /></ScaledPage>;
+  return <ScaledPage designHeight={designHeight} scrollable bg="#eef0f1"><VuluePage onTabChange={setActiveTab} onEventExpandedChange={setEventCardsBottom} /></ScaledPage>;
 }
 
 function LoginFullScreen({ onLogin }: { onLogin: () => void }) {
