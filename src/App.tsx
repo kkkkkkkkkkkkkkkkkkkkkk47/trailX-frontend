@@ -47,7 +47,7 @@ export default function App() {
   }
   // Event Contracts: base 1100px + 382px per expanded card (4 cards collapsed = ~1100, all expanded = ~2628)
   const designHeight = activeTab === 'Event Contracts'
-    ? 1100 + eventExpandedCount * 382
+    ? 1200 + eventExpandedCount * 382
     : DESIGN_HEIGHT;
   return <ScaledPage designHeight={designHeight} bg="#eef0f1"><VuluePage onTabChange={setActiveTab} onEventExpandedChange={setEventExpandedCount} /></ScaledPage>;
 }
