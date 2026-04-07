@@ -751,7 +751,7 @@ export default function VuluePage() {
         </>)}
 
         {/* ── Card 2: Economics Events Contracts (collapsed, top:1097, h:190) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard2Expanded ? 280 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1097, width: 391 }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard2Expanded ? 382 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1097, width: 391 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: 1108, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 31, top: 1126, display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
@@ -771,6 +771,71 @@ export default function VuluePage() {
         <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 31, borderRadius: 4, top: 1158, width: 25 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 34, fontSize: 10, color: 'white', top: 1159, width: 19 }}>Real</p>
         <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 1187, left: 31, lineHeight: 1.28 }}>$0.0</p>
+        {eventCard2Expanded && (<>
+        {/* Divider */}
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 1px)', top: 1249, width: 386 }}>
+          <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke2} />
+        </div>
+        {/* Upload button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1270, width: 50 }} />
+        <div style={{ position: 'absolute', left: 48.375, top: 1278.875, width: 26.25, height: 26.25 }}>
+          <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector5} />
+        </div>
+        {/* Arrow button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 193, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1270, width: 95 }} />
+        <div style={{ position: 'absolute', height: 6.222, left: 227, top: 1291, width: 22.5 }}>
+          <div style={{ position: 'absolute', inset: '-58.14% -11.97% -16.07% -4.44%' }}>
+            <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Arrow29} />
+          </div>
+        </div>
+        {/* Swap button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1270, width: 95 }} />
+        <div style={{ position: 'absolute', display: 'flex', height: 16.857, alignItems: 'center', justifyContent: 'center', left: 333, top: 1287, width: 17.805 }}>
+          <div style={{ flex: 'none', transform: 'rotate(-60.85deg) skewX(1.53deg)' }}>
+            <div style={{ height: 13.393, position: 'relative', width: 12.192 }}>
+              <div style={{ position: 'absolute', inset: '-54.98% -8.2% -7.47% -8.2%' }}>
+                <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Ellipse372} />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Chart bars button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 92, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1270, width: 95 }} />
+        <div style={{ position: 'absolute', height: 9.799, left: 129, top: 1288, width: 17.57 }}>
+          <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
+            <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+          </div>
+        </div>
+        {/* Performance Summary button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1328, width: 256 }} />
+        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 98, color: '#2254d4', fontSize: 14, top: 1342, width: 152 }}>Performance Summary</p>
+        {/* Trade button */}
+        <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1328, width: 95 }} />
+        <div style={{ position: 'absolute', height: 12, left: 327, top: 1345, width: 30 }}>
+          <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4968} />
+        </div>
+        {/* Frosted panel */}
+        <div style={{ position: 'absolute', display: 'flex', height: 79, alignItems: 'center', justifyContent: 'center', left: 36, top: 1386, width: 358 }}>
+          <div style={{ transform: 'rotate(-90deg)', flex: 'none' }}>
+            <div style={{ backdropFilter: 'blur(2px)', background: 'rgba(34,40,44,0.1)', border: '0.5px solid #0a2ddb', height: 358, borderRadius: 15, width: 79 }} />
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 49, top: 1414, width: 22, height: 19 }}>
+          <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector6} />
+        </div>
+        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 88, color: '#22282c', fontSize: 13, top: 1405, width: 207 }}>
+          Strategy Tethering and Portfolio Mirroring marketplace
+        </p>
+        <div style={{ position: 'absolute', display: 'flex', height: 9.564, alignItems: 'center', justifyContent: 'center', left: 342, top: 1419, width: 12.982 }}>
+          <div style={{ flex: 'none', transform: 'rotate(-36.38deg)' }}>
+            <div style={{ height: 0, position: 'relative', width: 16.125 }}>
+              <div style={{ position: 'absolute', inset: '-7.36px -6.2%' }}>
+                <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Arrow28} />
+              </div>
+            </div>
+          </div>
+        </div>
+        </>)}
         {eventCard2Expanded ? (
           <div onClick={() => setEventCard2Expanded(false)} style={{ position: 'absolute', left: 327, top: 1152, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
@@ -782,7 +847,7 @@ export default function VuluePage() {
         )}
 
         {/* ── Card 3: Financials Events Contracts (collapsed, top:1294, h:190) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard3Expanded ? 280 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1294, width: 391 }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard3Expanded ? 382 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1294, width: 391 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: 1305, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 31, top: 1323, display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
@@ -802,6 +867,71 @@ export default function VuluePage() {
         <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 31, borderRadius: 4, top: 1355, width: 25 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 34, fontSize: 10, color: 'white', top: 1356, width: 19 }}>Real</p>
         <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 1384, left: 31, lineHeight: 1.28 }}>$0.0</p>
+        {eventCard3Expanded && (<>
+        {/* Divider */}
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 1px)', top: 1446, width: 386 }}>
+          <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke2} />
+        </div>
+        {/* Upload button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1467, width: 50 }} />
+        <div style={{ position: 'absolute', left: 48.375, top: 1475.875, width: 26.25, height: 26.25 }}>
+          <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector5} />
+        </div>
+        {/* Arrow button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 193, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1467, width: 95 }} />
+        <div style={{ position: 'absolute', height: 6.222, left: 227, top: 1488, width: 22.5 }}>
+          <div style={{ position: 'absolute', inset: '-58.14% -11.97% -16.07% -4.44%' }}>
+            <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Arrow29} />
+          </div>
+        </div>
+        {/* Swap button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1467, width: 95 }} />
+        <div style={{ position: 'absolute', display: 'flex', height: 16.857, alignItems: 'center', justifyContent: 'center', left: 333, top: 1484, width: 17.805 }}>
+          <div style={{ flex: 'none', transform: 'rotate(-60.85deg) skewX(1.53deg)' }}>
+            <div style={{ height: 13.393, position: 'relative', width: 12.192 }}>
+              <div style={{ position: 'absolute', inset: '-54.98% -8.2% -7.47% -8.2%' }}>
+                <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Ellipse372} />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Chart bars button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 92, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1467, width: 95 }} />
+        <div style={{ position: 'absolute', height: 9.799, left: 129, top: 1485, width: 17.57 }}>
+          <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
+            <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+          </div>
+        </div>
+        {/* Performance Summary button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1525, width: 256 }} />
+        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 98, color: '#2254d4', fontSize: 14, top: 1539, width: 152 }}>Performance Summary</p>
+        {/* Trade button */}
+        <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1525, width: 95 }} />
+        <div style={{ position: 'absolute', height: 12, left: 327, top: 1542, width: 30 }}>
+          <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4968} />
+        </div>
+        {/* Frosted panel */}
+        <div style={{ position: 'absolute', display: 'flex', height: 79, alignItems: 'center', justifyContent: 'center', left: 36, top: 1583, width: 358 }}>
+          <div style={{ transform: 'rotate(-90deg)', flex: 'none' }}>
+            <div style={{ backdropFilter: 'blur(2px)', background: 'rgba(34,40,44,0.1)', border: '0.5px solid #0a2ddb', height: 358, borderRadius: 15, width: 79 }} />
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 49, top: 1611, width: 22, height: 19 }}>
+          <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector6} />
+        </div>
+        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 88, color: '#22282c', fontSize: 13, top: 1602, width: 207 }}>
+          Strategy Tethering and Portfolio Mirroring marketplace
+        </p>
+        <div style={{ position: 'absolute', display: 'flex', height: 9.564, alignItems: 'center', justifyContent: 'center', left: 342, top: 1616, width: 12.982 }}>
+          <div style={{ flex: 'none', transform: 'rotate(-36.38deg)' }}>
+            <div style={{ height: 0, position: 'relative', width: 16.125 }}>
+              <div style={{ position: 'absolute', inset: '-7.36px -6.2%' }}>
+                <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Arrow28} />
+              </div>
+            </div>
+          </div>
+        </div>
+        </>)}
         {eventCard3Expanded ? (
           <div onClick={() => setEventCard3Expanded(false)} style={{ position: 'absolute', left: 327, top: 1349, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
@@ -813,7 +943,7 @@ export default function VuluePage() {
         )}
 
         {/* ── Card 4: IPOs Events Contracts (collapsed, top:1492, h:190) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard4Expanded ? 280 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1492, width: 391 }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard4Expanded ? 382 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1492, width: 391 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: 1503, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 31, top: 1521, display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
@@ -833,6 +963,71 @@ export default function VuluePage() {
         <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 31, borderRadius: 4, top: 1553, width: 25 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 34, fontSize: 10, color: 'white', top: 1554, width: 19 }}>Real</p>
         <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 1582, left: 31, lineHeight: 1.28 }}>$0.0</p>
+        {eventCard4Expanded && (<>
+        {/* Divider */}
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 1px)', top: 1644, width: 386 }}>
+          <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke2} />
+        </div>
+        {/* Upload button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1665, width: 50 }} />
+        <div style={{ position: 'absolute', left: 48.375, top: 1673.875, width: 26.25, height: 26.25 }}>
+          <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector5} />
+        </div>
+        {/* Arrow button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 193, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1665, width: 95 }} />
+        <div style={{ position: 'absolute', height: 6.222, left: 227, top: 1686, width: 22.5 }}>
+          <div style={{ position: 'absolute', inset: '-58.14% -11.97% -16.07% -4.44%' }}>
+            <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Arrow29} />
+          </div>
+        </div>
+        {/* Swap button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1665, width: 95 }} />
+        <div style={{ position: 'absolute', display: 'flex', height: 16.857, alignItems: 'center', justifyContent: 'center', left: 333, top: 1682, width: 17.805 }}>
+          <div style={{ flex: 'none', transform: 'rotate(-60.85deg) skewX(1.53deg)' }}>
+            <div style={{ height: 13.393, position: 'relative', width: 12.192 }}>
+              <div style={{ position: 'absolute', inset: '-54.98% -8.2% -7.47% -8.2%' }}>
+                <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Ellipse372} />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Chart bars button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 92, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1665, width: 95 }} />
+        <div style={{ position: 'absolute', height: 9.799, left: 129, top: 1683, width: 17.57 }}>
+          <div style={{ position: 'absolute', inset: '-10.21% -5.69%' }}>
+            <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4984} />
+          </div>
+        </div>
+        {/* Performance Summary button */}
+        <div style={{ position: 'absolute', background: 'white', border: '1px solid #2254d4', height: 46, left: 36, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1723, width: 256 }} />
+        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 98, color: '#2254d4', fontSize: 14, top: 1737, width: 152 }}>Performance Summary</p>
+        {/* Trade button */}
+        <div style={{ position: 'absolute', background: '#2254d4', border: '1px solid #2254d4', height: 46, left: 295, borderRadius: 15, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1723, width: 95 }} />
+        <div style={{ position: 'absolute', height: 12, left: 327, top: 1740, width: 30 }}>
+          <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Group4968} />
+        </div>
+        {/* Frosted panel */}
+        <div style={{ position: 'absolute', display: 'flex', height: 79, alignItems: 'center', justifyContent: 'center', left: 36, top: 1781, width: 358 }}>
+          <div style={{ transform: 'rotate(-90deg)', flex: 'none' }}>
+            <div style={{ backdropFilter: 'blur(2px)', background: 'rgba(34,40,44,0.1)', border: '0.5px solid #0a2ddb', height: 358, borderRadius: 15, width: 79 }} />
+          </div>
+        </div>
+        <div style={{ position: 'absolute', left: 49, top: 1809, width: 22, height: 19 }}>
+          <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector6} />
+        </div>
+        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 88, color: '#22282c', fontSize: 13, top: 1800, width: 207 }}>
+          Strategy Tethering and Portfolio Mirroring marketplace
+        </p>
+        <div style={{ position: 'absolute', display: 'flex', height: 9.564, alignItems: 'center', justifyContent: 'center', left: 342, top: 1814, width: 12.982 }}>
+          <div style={{ flex: 'none', transform: 'rotate(-36.38deg)' }}>
+            <div style={{ height: 0, position: 'relative', width: 16.125 }}>
+              <div style={{ position: 'absolute', inset: '-7.36px -6.2%' }}>
+                <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Arrow28} />
+              </div>
+            </div>
+          </div>
+        </div>
+        </>)}
         {eventCard4Expanded ? (
           <div onClick={() => setEventCard4Expanded(false)} style={{ position: 'absolute', left: 327, top: 1547, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
