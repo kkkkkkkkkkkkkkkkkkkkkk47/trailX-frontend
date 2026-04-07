@@ -28,6 +28,9 @@ export default function VuluePage() {
   const [activeTab, setActiveTab] = useState<Tab>('FX');
   const [cardExpanded, setCardExpanded] = useState(true);
   const [eventCard1Expanded, setEventCard1Expanded] = useState(true);
+  const [eventCard2Expanded, setEventCard2Expanded] = useState(false);
+  const [eventCard3Expanded, setEventCard3Expanded] = useState(false);
+  const [eventCard4Expanded, setEventCard4Expanded] = useState(false);
   const [bondIndex, setBondIndex] = useState(0);
   const touchStartX = useRef(0);
   const bondSubAccounts = [
@@ -748,7 +751,7 @@ export default function VuluePage() {
         </>)}
 
         {/* ── Card 2: Economics Events Contracts (collapsed, top:1097, h:190) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1097, width: 391 }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard2Expanded ? 280 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1097, width: 391 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: 1108, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 31, top: 1126, display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
@@ -768,12 +771,18 @@ export default function VuluePage() {
         <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 31, borderRadius: 4, top: 1158, width: 25 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 34, fontSize: 10, color: 'white', top: 1159, width: 19 }}>Real</p>
         <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 1187, left: 31, lineHeight: 1.28 }}>$0.0</p>
-        <div style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: 1222, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-          <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
-        </div>
+        {eventCard2Expanded ? (
+          <div onClick={() => setEventCard2Expanded(false)} style={{ position: 'absolute', left: 327, top: 1152, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
+          </div>
+        ) : (
+          <div onClick={() => setEventCard2Expanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: 1222, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
+          </div>
+        )}
 
         {/* ── Card 3: Financials Events Contracts (collapsed, top:1294, h:190) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1294, width: 391 }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard3Expanded ? 280 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1294, width: 391 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: 1305, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 31, top: 1323, display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
@@ -793,12 +802,18 @@ export default function VuluePage() {
         <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 31, borderRadius: 4, top: 1355, width: 25 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 34, fontSize: 10, color: 'white', top: 1356, width: 19 }}>Real</p>
         <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 1384, left: 31, lineHeight: 1.28 }}>$0.0</p>
-        <div style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: 1419, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-          <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
-        </div>
+        {eventCard3Expanded ? (
+          <div onClick={() => setEventCard3Expanded(false)} style={{ position: 'absolute', left: 327, top: 1349, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
+          </div>
+        ) : (
+          <div onClick={() => setEventCard3Expanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: 1419, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
+          </div>
+        )}
 
         {/* ── Card 4: IPOs Events Contracts (collapsed, top:1492, h:190) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1492, width: 391 }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard4Expanded ? 280 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1492, width: 391 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: 1503, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 31, top: 1521, display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
@@ -818,9 +833,15 @@ export default function VuluePage() {
         <div style={{ position: 'absolute', background: '#05a54f', height: 13, left: 31, borderRadius: 4, top: 1553, width: 25 }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 34, fontSize: 10, color: 'white', top: 1554, width: 19 }}>Real</p>
         <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 1582, left: 31, lineHeight: 1.28 }}>$0.0</p>
-        <div style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: 1617, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-          <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
-        </div>
+        {eventCard4Expanded ? (
+          <div onClick={() => setEventCard4Expanded(false)} style={{ position: 'absolute', left: 327, top: 1547, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
+          </div>
+        ) : (
+          <div onClick={() => setEventCard4Expanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: 1617, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
+          </div>
+        )}
 
       </>)}
 
