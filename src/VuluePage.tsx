@@ -27,6 +27,7 @@ const tabData: Record<Tab, { subAccount: string; balance: string; holdings: stri
 export default function VuluePage() {
   const [activeTab, setActiveTab] = useState<Tab>('FX');
   const [cardExpanded, setCardExpanded] = useState(true);
+  const [eventCard1Expanded, setEventCard1Expanded] = useState(true);
   const [bondIndex, setBondIndex] = useState(0);
   const touchStartX = useRef(0);
   const bondSubAccounts = [
@@ -642,7 +643,7 @@ export default function VuluePage() {
       {activeTab === 'Event Contracts' && (<>
 
         {/* ── Card 1: Crypto Events Contracts (expanded, top:706, h:382) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: 382, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 706, width: 391, overflow: 'hidden' }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: eventCard1Expanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 706, width: 391, overflow: 'hidden' }} />
         {/* Title */}
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 37, top: 730, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 37, top: 748, display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -666,8 +667,17 @@ export default function VuluePage() {
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 300, height: 8, lineHeight: 1.1, left: 40, fontSize: 10, color: 'white', top: 792, width: 19 }}>Real</p>
         {/* Balance */}
         <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 823, left: 37, lineHeight: 1.28 }}>$0.0</p>
-        {/* Confirm */}
-        <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', top: 823, left: 348 }}>Confirm</p>
+        {/* See less / See more */}
+        {eventCard1Expanded ? (
+          <div onClick={() => setEventCard1Expanded(false)} style={{ position: 'absolute', left: 327, top: 813, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
+          </div>
+        ) : (
+          <div onClick={() => setEventCard1Expanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: 858, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
+          </div>
+        )}
+        {eventCard1Expanded && (<>
         {/* Divider */}
         <div style={{ transform: 'translateX(-50%)', position: 'absolute', height: 1, left: 'calc(50% - 1px)', top: 858, width: 386 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke2} />
@@ -734,6 +744,8 @@ export default function VuluePage() {
             </div>
           </div>
         </div>
+
+        </>)}
 
         {/* ── Card 2: Economics Events Contracts (collapsed, top:1097, h:190) ── */}
         <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 1097, width: 391 }} />
