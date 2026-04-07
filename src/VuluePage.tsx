@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   Rectangle1040, Vector, Rectangle1556, Group4802, Group4941,
   Ellipse371, Vector1, Arrow26, Ellipse353, Ellipse354,
@@ -29,15 +29,16 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
   const [cardExpanded, setCardExpanded] = useState(true);
   const setActiveTab = (tab: Tab) => { setActiveTabRaw(tab); onTabChange?.(tab); };
   const [activeEventCard, setActiveEventCard] = useState<number | null>(null);
+  const [eventCard1Expanded, setEventCard1Expanded] = useState(true);
+  const [eventCard2Expanded, setEventCard2Expanded] = useState(false);
+  const [eventCard3Expanded, setEventCard3Expanded] = useState(false);
+  const [eventCard4Expanded, setEventCard4Expanded] = useState(false);
   // Notify parent of expanded card count for dynamic page height
   useEffect(() => {
     const count = [eventCard1Expanded, eventCard2Expanded, eventCard3Expanded, eventCard4Expanded].filter(Boolean).length;
     onEventExpandedChange?.(count);
   }, [eventCard1Expanded, eventCard2Expanded, eventCard3Expanded, eventCard4Expanded]);
-  const [eventCard1Expanded, setEventCard1Expanded] = useState(true);
-  const [eventCard2Expanded, setEventCard2Expanded] = useState(false);
-  const [eventCard3Expanded, setEventCard3Expanded] = useState(false);
-  const [eventCard4Expanded, setEventCard4Expanded] = useState(false);
+
   // Dynamic card positions based on expanded state
   const EC_BASE = 706;
   const EC_GAP = 10;
