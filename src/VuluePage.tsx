@@ -24,11 +24,16 @@ const tabData: Record<Tab, { subAccount: string; balance: string; holdings: stri
   'Event Contracts':{ subAccount: 'Event Contracts',   balance: '$0.0',    holdings: '0', todayReturn: '0%',     totalReturn: '0%',     marketValue: '$0',  floatingPnL: '0.0%'   },
 };
 
-export default function VuluePage({ onTabChange }: { onTabChange?: (tab: string) => void } = {}) {
+export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTabChange?: (tab: string) => void; onEventExpandedChange?: (count: number) => void } = {}) {
   const [activeTab, setActiveTabRaw] = useState<Tab>('FX');
   const [cardExpanded, setCardExpanded] = useState(true);
   const setActiveTab = (tab: Tab) => { setActiveTabRaw(tab); onTabChange?.(tab); };
   const [activeEventCard, setActiveEventCard] = useState<number | null>(null);
+  // Notify parent of expanded card count for dynamic page height
+  useEffect(() => {
+    const count = [eventCard1Expanded, eventCard2Expanded, eventCard3Expanded, eventCard4Expanded].filter(Boolean).length;
+    onEventExpandedChange?.(count);
+  }, [eventCard1Expanded, eventCard2Expanded, eventCard3Expanded, eventCard4Expanded]);
   const [eventCard1Expanded, setEventCard1Expanded] = useState(true);
   const [eventCard2Expanded, setEventCard2Expanded] = useState(false);
   const [eventCard3Expanded, setEventCard3Expanded] = useState(false);

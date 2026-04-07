@@ -40,13 +40,16 @@ function ScaledPage({ children, designHeight, bg = '#f7fafb' }: { children: Reac
 export default function App() {
   const [page, setPage] = useState<'login' | 'main'>('login');
   const [activeTab, setActiveTab] = useState('FX');
+  const [eventExpandedCount, setEventExpandedCount] = useState(0);
 
   if (page === 'login') {
     return <LoginFullScreen onLogin={() => setPage('main')} />;
   }
-  // Event Contracts needs more height to fit all 4 expanded cards
-  const designHeight = activeTab === 'Event Contracts' ? 2500 : DESIGN_HEIGHT;
-  return <ScaledPage designHeight={designHeight} bg="#eef0f1"><VuluePage onTabChange={setActiveTab} /></ScaledPage>;
+  // Event Contracts: base 1100px + 382px per expanded card (4 cards collapsed = ~1100, all expanded = ~2628)
+  const designHeight = activeTab === 'Event Contracts'
+    ? 1100 + eventExpandedCount * 382
+    : DESIGN_HEIGHT;
+  return <ScaledPage designHeight={designHeight} bg="#eef0f1"><VuluePage onTabChange={setActiveTab} onEventExpandedChange={setEventExpandedCount} /></ScaledPage>;
 }
 
 function LoginFullScreen({ onLogin }: { onLogin: () => void }) {
