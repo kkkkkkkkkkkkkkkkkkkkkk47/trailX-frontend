@@ -411,24 +411,28 @@ export default function VuluePage() {
 
       {activeTab !== 'Event Contracts' && <div style={{ position: 'absolute', display: 'contents', left: 19, top: 750 + cardOffset }}>
         {/* Card background */}
+        {/* Card background */}
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750 + cardOffset, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }} />
+        {/* Full-card swipe overlay */}
         <div
           onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
           onTouchEnd={(e) => {
             const dx = e.changedTouches[0].clientX - touchStartX.current;
+            if (Math.abs(dx) < 20) return;
             if (activeTab === 'Bonds') {
-              if (dx < -40) setBondIndex((i) => (i + 1) % bondSubAccounts.length);
-              else if (dx > 40) setBondIndex((i) => (i - 1 + bondSubAccounts.length) % bondSubAccounts.length);
+              if (dx < 0) setBondIndex((i) => (i + 1) % bondSubAccounts.length);
+              else setBondIndex((i) => (i - 1 + bondSubAccounts.length) % bondSubAccounts.length);
             }
             if (activeTab === 'Equities') {
-              if (dx < -40) setEquityIndex((i) => (i + 1) % equitySubAccounts.length);
-              else if (dx > 40) setEquityIndex((i) => (i - 1 + equitySubAccounts.length) % equitySubAccounts.length);
+              if (dx < 0) setEquityIndex((i) => (i + 1) % equitySubAccounts.length);
+              else setEquityIndex((i) => (i - 1 + equitySubAccounts.length) % equitySubAccounts.length);
             }
             if (activeTab === 'Equities CFDs') {
-              if (dx < -40) setEquityCfdIndex((i) => (i + 1) % equityCfdSubAccounts.length);
-              else if (dx > 40) setEquityCfdIndex((i) => (i - 1 + equityCfdSubAccounts.length) % equityCfdSubAccounts.length);
+              if (dx < 0) setEquityCfdIndex((i) => (i + 1) % equityCfdSubAccounts.length);
+              else setEquityCfdIndex((i) => (i - 1 + equityCfdSubAccounts.length) % equityCfdSubAccounts.length);
             }
           }}
-          style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750 + cardOffset, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }}
+          style={{ transform: 'translateX(-50%)', position: 'absolute', left: 'calc(50% - 0.5px)', top: 750 + cardOffset, width: 391, height: cardExpanded ? 382 : 225, borderRadius: 20, zIndex: 10, background: 'transparent', transition: 'height 0.3s ease' }}
         />
 
         {/* Title — top: 737 + cardOffset */}
