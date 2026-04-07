@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import loginLogo from './assets/figma/login-logo.png';
+import loginLogo from './assets/figma/vulueS.png';
 import loginLine from './assets/figma/login-line.svg';
 import loginDot from './assets/figma/login-dot.svg';
 import loginDotActive from './assets/figma/login-dot-active.svg';
@@ -90,7 +90,7 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
 
       {/* ── VULUE logo + wordmark ── */}
       <div style={{ position: 'absolute', left: 174, top: 761, width: 27, height: 27 }}>
-        <img alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} src={loginLogo} />
+        <img alt="Vulue Logo" loading="eager" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} src={loginLogo} />
       </div>
       <p style={{ position: 'absolute', left: 200, top: 764, width: 57, height: 25, fontFamily: "'Anek Odia', sans-serif", fontWeight: 200, fontSize: 20, color: 'white', lineHeight: '1.28', margin: 0 }}>
         VULUE
