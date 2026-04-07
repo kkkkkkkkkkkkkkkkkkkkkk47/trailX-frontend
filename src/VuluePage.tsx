@@ -24,9 +24,11 @@ const tabData: Record<Tab, { subAccount: string; balance: string; holdings: stri
   'Event Contracts':{ subAccount: 'Event Contracts',   balance: '$0.0',    holdings: '0', todayReturn: '0%',     totalReturn: '0%',     marketValue: '$0',  floatingPnL: '0.0%'   },
 };
 
-export default function VuluePage() {
-  const [activeTab, setActiveTab] = useState<Tab>('FX');
+export default function VuluePage({ onTabChange }: { onTabChange?: (tab: string) => void } = {}) {
+  const [activeTab, setActiveTabRaw] = useState<Tab>('FX');
   const [cardExpanded, setCardExpanded] = useState(true);
+  const setActiveTab = (tab: Tab) => { setActiveTabRaw(tab); onTabChange?.(tab); };
+  const [activeEventCard, setActiveEventCard] = useState<number | null>(null);
   const [eventCard1Expanded, setEventCard1Expanded] = useState(true);
   const [eventCard2Expanded, setEventCard2Expanded] = useState(false);
   const [eventCard3Expanded, setEventCard3Expanded] = useState(false);
@@ -36,7 +38,8 @@ export default function VuluePage() {
   const EC_GAP = 10;
   const EC_EXPANDED = 382;
   const EC_COLLAPSED = 190;
-  const ec1H = eventCard1Expanded ? EC_EXPANDED : EC_COLLAPSED;
+  const EC_COLLAPSED_1 = 226;
+  const ec1H = eventCard1Expanded ? EC_EXPANDED : EC_COLLAPSED_1;
   const ec2H = eventCard2Expanded ? EC_EXPANDED : EC_COLLAPSED;
   const ec3H = eventCard3Expanded ? EC_EXPANDED : EC_COLLAPSED;
   const ec2Top = EC_BASE + ec1H + EC_GAP;
@@ -657,7 +660,7 @@ export default function VuluePage() {
       {activeTab === 'Event Contracts' && (<>
 
         {/* ── Card 1: Crypto Events Contracts (expanded, top:706, h:382) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: eventCard1Expanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 706, width: 391, overflow: 'hidden' }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: eventCard1Expanded ? 382 : EC_COLLAPSED_1, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 706, width: 391, overflow: 'hidden' }} />
         {/* Title */}
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 37, top: 730, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 37, top: 748, display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -683,11 +686,11 @@ export default function VuluePage() {
         <p style={{ position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 823, left: 37, lineHeight: 1.28 }}>$0.0</p>
         {/* See less / See more */}
         {eventCard1Expanded ? (
-          <div onClick={() => setEventCard1Expanded(false)} style={{ position: 'absolute', left: 327, top: 813, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => { setEventCard1Expanded(false); setActiveEventCard(1); }} style={{ position: 'absolute', left: 327, top: 813, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
           </div>
         ) : (
-          <div onClick={() => setEventCard1Expanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: 858, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => { setEventCard1Expanded(true); setActiveEventCard(1); }} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: 858, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
           </div>
         )}
@@ -762,7 +765,7 @@ export default function VuluePage() {
         </>)}
 
         {/* ── Card 2: Economics Events Contracts (collapsed, top:1097, h:190) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard2Expanded ? 382 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: ec2Top, width: 391, transition: 'top 0.3s ease, height 0.3s ease' }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: activeEventCard === 2 ? '2px solid #2254d4' : '1px solid rgba(0,0,0,0.05)', height: eventCard2Expanded ? 382 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: ec2Top, width: 391, transition: 'top 0.3s ease, height 0.3s ease' }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: ec2Top + 11, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 31, top: ec2Top + 29, display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
@@ -848,17 +851,17 @@ export default function VuluePage() {
         </div>
         </>)}
         {eventCard2Expanded ? (
-          <div onClick={() => setEventCard2Expanded(false)} style={{ position: 'absolute', left: 327, top: ec2Top + 55, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => { setEventCard2Expanded(false); setActiveEventCard(2); }} style={{ position: 'absolute', left: 327, top: ec2Top + 55, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
           </div>
         ) : (
-          <div onClick={() => setEventCard2Expanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: ec2Top + 125, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => { setEventCard2Expanded(true); setActiveEventCard(2); }} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: ec2Top + 125, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
           </div>
         )}
 
         {/* ── Card 3: Financials Events Contracts (collapsed, top:1294, h:190) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard3Expanded ? 382 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: ec3Top, width: 391, transition: 'top 0.3s ease, height 0.3s ease' }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: activeEventCard === 3 ? '2px solid #2254d4' : '1px solid rgba(0,0,0,0.05)', height: eventCard3Expanded ? 382 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: ec3Top, width: 391, transition: 'top 0.3s ease, height 0.3s ease' }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: ec3Top + 11, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 31, top: ec3Top + 29, display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
@@ -944,17 +947,17 @@ export default function VuluePage() {
         </div>
         </>)}
         {eventCard3Expanded ? (
-          <div onClick={() => setEventCard3Expanded(false)} style={{ position: 'absolute', left: 327, top: ec3Top + 55, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => { setEventCard3Expanded(false); setActiveEventCard(3); }} style={{ position: 'absolute', left: 327, top: ec3Top + 55, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
           </div>
         ) : (
-          <div onClick={() => setEventCard3Expanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: ec3Top + 125, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => { setEventCard3Expanded(true); setActiveEventCard(3); }} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: ec3Top + 125, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
           </div>
         )}
 
         {/* ── Card 4: IPOs Events Contracts (collapsed, top:1492, h:190) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '1px solid rgba(0,0,0,0.05)', height: eventCard4Expanded ? 382 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: ec4Top, width: 391, transition: 'top 0.3s ease, height 0.3s ease' }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: activeEventCard === 4 ? '2px solid #2254d4' : '1px solid rgba(0,0,0,0.05)', height: eventCard4Expanded ? 382 : 190, left: 'calc(50% - 1.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: ec4Top, width: 391, transition: 'top 0.3s ease, height 0.3s ease' }} />
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 31, top: ec4Top + 11, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 31, top: ec4Top + 29, display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ height: 9.799, width: 17.57, flexShrink: 0, position: 'relative' }}>
@@ -1040,11 +1043,11 @@ export default function VuluePage() {
         </div>
         </>)}
         {eventCard4Expanded ? (
-          <div onClick={() => setEventCard4Expanded(false)} style={{ position: 'absolute', left: 327, top: ec4Top + 55, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => { setEventCard4Expanded(false); setActiveEventCard(4); }} style={{ position: 'absolute', left: 327, top: ec4Top + 55, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
           </div>
         ) : (
-          <div onClick={() => setEventCard4Expanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: ec4Top + 125, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <div onClick={() => { setEventCard4Expanded(true); setActiveEventCard(4); }} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 24, borderRadius: 15, top: ec4Top + 125, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <p style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
           </div>
         )}
