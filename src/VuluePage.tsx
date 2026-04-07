@@ -666,7 +666,7 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
       {activeTab === 'Event Contracts' && (<>
 
         {/* ── Card 1: Crypto Events Contracts (expanded, top:706, h:382) ── */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: eventCard1Expanded ? 382 : EC_COLLAPSED_1, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 706, width: 391, overflow: 'hidden' }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: activeEventCard === 1 ? '2px solid #2254d4' : '1px solid rgba(0,0,0,0.05)', height: eventCard1Expanded ? 382 : EC_COLLAPSED_1, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 706, width: 391, overflow: 'hidden' }} />
         {/* Title */}
         <p style={{ position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.1, left: 37, top: 730, color: '#22282c', fontSize: 16, margin: 0 }}>Portfolio Sub-Account</p>
         <div style={{ position: 'absolute', left: 37, top: 748, display: 'flex', alignItems: 'center', gap: 6 }}>
