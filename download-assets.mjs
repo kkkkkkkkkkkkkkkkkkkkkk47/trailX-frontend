@@ -32,6 +32,8 @@ const assets = {
   'Vector6.png': 'https://www.figma.com/api/mcp/asset/0148c19f-2e5f-4735-b080-efa456b9642f',
   'Arrow28.png': 'https://www.figma.com/api/mcp/asset/34f82eb1-93f5-4727-a8a9-6c33d139c4f6',
   'Line7Stroke2.png': 'https://www.figma.com/api/mcp/asset/a98feb43-db76-4db6-8226-32cad3657a92',
+  'Group4795.png': 'https://www.figma.com/api/mcp/asset/48b30975-f1bb-4242-ab35-96ca4e55dafd',
+  'Group4987.png': 'https://www.figma.com/api/mcp/asset/ced9f116-cda5-4f8e-92ac-915e774416c3',
 };
 
 const outDir = './src/assets/figma';
