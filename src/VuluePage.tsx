@@ -33,6 +33,7 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
   const [eventCard2Expanded, setEventCard2Expanded] = useState(false);
   const [eventCard3Expanded, setEventCard3Expanded] = useState(false);
   const [eventCard4Expanded, setEventCard4Expanded] = useState(false);
+  const [activeOrderTab, setActiveOrderTab] = useState<'OPEN' | 'ORDERS' | 'CLOSED'>('OPEN');
   // Notify parent of expanded card count for dynamic page height
   useEffect(() => {
     const EC_BASE = 706, EC_GAP = 10, EC_EXPANDED = 382, EC_COLLAPSED = 190, EC_COLLAPSED_1 = 226;
@@ -342,17 +343,22 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
       <div style={{ transform: `translateX(-50%) translateY(${yOffset}px)`, transition: 'transform 0.3s ease', position: 'absolute', height: 1, left: 'calc(50% - 66.5px)', top: 1226, width: 249 }}>
         <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke} />
       </div>
-      <div style={{ transform: `translateX(-50%) translateY(${yOffset}px)`, transition: 'transform 0.3s ease', position: 'absolute', height: 1, left: 'calc(50% - 165px)', top: 1226, width: 54 }}>
+      <div style={{ transform: `translateX(-50%) translateY(${yOffset}px)`, transition: 'transform 0.3s ease, left 0.3s ease', position: 'absolute', height: 1, left: activeOrderTab === 'OPEN' ? 'calc(50% - 165px)' : activeOrderTab === 'ORDERS' ? 'calc(50% - 66.5px)' : 'calc(50% + 31px)', top: 1226, width: 54 }}>
         <div style={{ position: 'absolute', inset: '-50% -0.93%' }}>
           <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Line7Stroke1} />
         </div>
       </div>
 
       {/* Orders tabs */}
-      <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.29, left: 122, color: '#22282c', fontSize: 10, top: 1199 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>ORDERS</p>
-      <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.29, left: 216, color: '#22282c', fontSize: 10, top: 1199 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>CLOSED</p>
-      <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 700, lineHeight: 1.29, left: 32, color: '#22282c', fontSize: 10, top: 1199 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>OPEN</p>
+      <p style={{ cursor: 'pointer', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: activeOrderTab === 'ORDERS' ? 700 : 500, lineHeight: 1.29, left: 122, color: '#22282c', fontSize: 10, top: 1199 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }} onClick={() => setActiveOrderTab('ORDERS')}>ORDERS</p>
+      <p style={{ cursor: 'pointer', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: activeOrderTab === 'CLOSED' ? 700 : 500, lineHeight: 1.29, left: 216, color: '#22282c', fontSize: 10, top: 1199 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }} onClick={() => setActiveOrderTab('CLOSED')}>CLOSED</p>
+      <p style={{ cursor: 'pointer', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: activeOrderTab === 'OPEN' ? 700 : 500, lineHeight: 1.29, left: 32, color: '#22282c', fontSize: 10, top: 1199 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }} onClick={() => setActiveOrderTab('OPEN')}>OPEN</p>
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Poppins, sans-serif', height: 12, lineHeight: 1.29, left: 'calc(50% + 109px)', fontStyle: 'normal', fontSize: 8, color: '#646363', top: 1200 + yOffset, width: 84, transition: 'top 0.3s ease' }}>Sorted by open time</p>
+
+      {/* Clickable areas for order tabs */}
+      <div onClick={() => setActiveOrderTab('OPEN')} style={{ cursor: 'pointer', position: 'absolute', left: 20, top: 1195 + yOffset, width: 60, height: 40, transition: 'top 0.3s ease' }} />
+      <div onClick={() => setActiveOrderTab('ORDERS')} style={{ cursor: 'pointer', position: 'absolute', left: 110, top: 1195 + yOffset, width: 70, height: 40, transition: 'top 0.3s ease' }} />
+      <div onClick={() => setActiveOrderTab('CLOSED')} style={{ cursor: 'pointer', position: 'absolute', left: 205, top: 1195 + yOffset, width: 70, height: 40, transition: 'top 0.3s ease' }} />
 
       {/* Recent positions */}
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, lineHeight: 1.29, left: 'calc(50% - 187px)', color: '#22282c', fontSize: 10, top: 1143 + yOffset, width: 209, transition: 'top 0.3s ease' }}>
@@ -365,9 +371,11 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
         <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={IconCalendar} />
       </div>
 
-      {/* Order card */}
+      {/* Order card - only shown for FX tab */}
+      {activeTab === 'FX' && (<>
       <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', height: 72, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(34,40,44,0.06)', top: 1349 + yOffset, width: 391, transition: 'top 0.3s ease' }} />
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.29, left: 34, color: '#22282c', fontSize: 7, top: 1323 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>21/10/2023</p>
+      </>)}
 
       {/* Portfolio stats */}
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% - 4px)', color: '#22282c', fontSize: 9, top: 1252 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>Total Return</p>
@@ -375,11 +383,12 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 180px)', color: '#22282c', fontSize: 10, top: 1268 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>{data.holdings}</p>
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% - 103px)', color: '#22282c', fontSize: 9, top: 1252 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>Today's Return</p>
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.305, left: 'calc(50% + 91px)', color: '#22282c', fontSize: 9, top: 1252 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>Current Market Value</p>
-      <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 103px)', fontSize: 10, color: '#23d223', top: 1268 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>{data.todayReturn}</p>
-      <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 3px)', fontSize: 10, color: '#23d223', top: 1268 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>{data.totalReturn}</p>
+      <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 103px)', fontSize: 10, color: activeTab === 'FX' ? '#23d223' : '#22282c', top: 1268 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>{data.todayReturn}</p>
+      <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.305, left: 'calc(50% - 3px)', fontSize: 10, color: activeTab === 'FX' ? '#23d223' : '#22282c', top: 1268 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>{data.totalReturn}</p>
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, lineHeight: 1.29, left: 'calc(50% + 92px)', color: '#22282c', fontSize: 10, top: 1268 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>{data.marketValue}</p>
 
       {/* Order row */}
+      {activeTab === 'FX' && (<>
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.29, left: 32, color: '#22282c', fontSize: 11, top: 1364 + yOffset, whiteSpace: 'nowrap', transition: 'top 0.3s ease' }}>VULUEIMS</p>
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Poppins, sans-serif', lineHeight: 0, left: 32, fontStyle: 'normal', fontSize: 9, color: '#23d223', top: 1379 + yOffset, whiteSpace: 'pre', transition: 'top 0.3s ease' }}>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.505 }}>Buy at $4</span>
@@ -401,6 +410,8 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.505, color: 'black' }}>100</span>
         <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, lineHeight: 1.505, color: '#ebf0ff' }}>{`  `}</span>
       </p>
+
+      </>)}
 
       {/* Settings icon */}
       <div style={{ position: 'absolute', display: 'contents', left: 295, top: 418 }}>
