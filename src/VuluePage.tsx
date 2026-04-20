@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import {
-  Rectangle1040, Vector, Rectangle1556, Group4802, Group4941,
-  Ellipse371, Vector1, Arrow26, Ellipse353, Ellipse354,
+  Rectangle1040, Vector, Rectangle1556, Group4802, Group4941, Group4942,
+  Ellipse371, Arrow26, Ellipse353, Ellipse354,
   Group4951, Ellipse243, Vector2, Group4957,
   Line7Stroke, Line7Stroke1,
-  IconCalendar, Group4794, Vector5, Arrow29, Ellipse372,
+  IconCalendar, Group4794, ClockIcon, BellIcon, CollapseIcon, Vector5, Arrow29, Ellipse372,
   Polygon19, Group4968, Vector6, Arrow28, Line7Stroke2,
   NgxLogo, Group4984,
   UsStocks, LseStocks, EuronextStocks, JpxStocks, HkStocks, PolandStocks, FrankfurtStocks,
@@ -26,7 +26,40 @@ const tabData: Record<Tab, { subAccount: string; balance: string; holdings: stri
 
 export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTabChange?: (tab: string) => void; onEventExpandedChange?: (bottom: number) => void } = {}) {
   const [activeTab, setActiveTabRaw] = useState<Tab>('FX');
-  const [cardExpanded, setCardExpanded] = useState(true);
+  const [fxExpanded, setFxExpanded] = useState(true);
+  const [metalsExpanded, setMetalsExpanded] = useState(true);
+  const [energiesExpanded, setEnergiesExpanded] = useState(true);
+  const [indicesExpanded, setIndicesExpanded] = useState(true);
+  const [bondsExpanded, setBondsExpanded] = useState(true);
+  const [equitiesExpanded, setEquitiesExpanded] = useState(true);
+  const [equitiesCfdsExpanded, setEquitiesCfdsExpanded] = useState(true);
+  const [etfCfdsExpanded, setEtfCfdsExpanded] = useState(true);
+  
+  // Get current tab's expanded state
+  const getTabExpanded = () => {
+    if (activeTab === 'FX') return fxExpanded;
+    if (activeTab === 'Metals') return metalsExpanded;
+    if (activeTab === 'Energies') return energiesExpanded;
+    if (activeTab === 'Indices') return indicesExpanded;
+    if (activeTab === 'Bonds') return bondsExpanded;
+    if (activeTab === 'Equities') return equitiesExpanded;
+    if (activeTab === 'Equities CFDs') return equitiesCfdsExpanded;
+    if (activeTab === 'ETF CFDs') return etfCfdsExpanded;
+    return true;
+  };
+  
+  const toggleTabExpanded = () => {
+    if (activeTab === 'FX') setFxExpanded(!fxExpanded);
+    else if (activeTab === 'Metals') setMetalsExpanded(!metalsExpanded);
+    else if (activeTab === 'Energies') setEnergiesExpanded(!energiesExpanded);
+    else if (activeTab === 'Indices') setIndicesExpanded(!indicesExpanded);
+    else if (activeTab === 'Bonds') setBondsExpanded(!bondsExpanded);
+    else if (activeTab === 'Equities') setEquitiesExpanded(!equitiesExpanded);
+    else if (activeTab === 'Equities CFDs') setEquitiesCfdsExpanded(!equitiesCfdsExpanded);
+    else if (activeTab === 'ETF CFDs') setEtfCfdsExpanded(!etfCfdsExpanded);
+  };
+  
+  const tabExpanded = getTabExpanded();
   const setActiveTab = (tab: Tab) => { setActiveTabRaw(tab); onTabChange?.(tab); };
   const [activeEventCard, setActiveEventCard] = useState<number | null>(1);
   const [eventCard1Expanded, setEventCard1Expanded] = useState(true);
@@ -91,8 +124,8 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
   ];
   const currentEquityCfd = equityCfdSubAccounts[equityCfdIndex];
   const data = tabData[activeTab];
-  const yOffset = cardExpanded ? 0 : -157;
-  const noDelayedRow = ['FX', 'Metals', 'Energies', 'Indices'].includes(activeTab);
+  const yOffset = tabExpanded ? 0 : -157;
+  const noDelayedRow = ['FX', 'Metals', 'Energies', 'Indices', 'ETF CFDs'].includes(activeTab);
   const cardOffset = noDelayedRow ? -44 : 0;
   return (
     <div style={{ background: '#eef0f1', position: 'relative', width: '100%', height: '100%' }}>
@@ -171,6 +204,8 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
                 </div>
               </div>
             </div>
+            {/* Group4942 icon beside Earn text */}
+            <img alt="" style={{ position: 'absolute', left: 10, top: 14, width: 36, height: 36 }} src={Group4942} />
             <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, height: 12, lineHeight: 1.29, left: 'calc(50% - 77px)', fontSize: 13, color: 'white', top: 24, width: 28 }}>Earn</p>
           </div>
         </div>
@@ -190,13 +225,8 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
         <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Ellipse371} />
       </div>
 
-      {/* Bell icon vector ÔÇö centered inside the 32x32 bg at left:363 */}
-      <div style={{ position: 'absolute', left: 363, top: 40, width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <img alt="" style={{ width: 11.9, height: 12.7 }} src={Vector1} />
-      </div>
-
-      {/* Notification bell bg */}
-      <div style={{ position: 'absolute', background: '#22344e', border: '1px solid #404649', left: 363, opacity: 0.25, borderRadius: 25, boxShadow: '0px 4px 4px 0px rgba(0,0,0,0.5)', width: 32, height: 32, top: 40 }} />
+      {/* Bell icon */}
+      <img alt="" style={{ position: 'absolute', left: 372, top: 38, width: 48, height: 50 }} src={BellIcon} />
 
       {/* Internal Transfer pill ÔÇö x=20, y=235, w=156, h=47 */}
       <div style={{ position: 'absolute', background: 'white', height: 47, left: 20, borderRadius: 25, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 235, width: 156 }} />
@@ -247,12 +277,14 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
       {/* Divider line */}
       <div style={{ position: 'absolute', height: 1, left: 0, top: 397, width: 430, background: '#22282c', opacity: 0.15 }} />
 
+      {/* Collapse icon */}
+      <div style={{ position: 'absolute', left: 287, top: 45, width: 26, height: 26, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <img alt="" style={{ width: 26, height: 26 }} src={CollapseIcon} />
+      </div>
+
       {/* Clock icon beside bell ÔÇö sits left of bell (bell at x=363) */}
-      <div style={{ position: 'absolute', left: 320, top: 42, width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="9" stroke="#22282c" strokeWidth="0.8"/>
-          <path d="M12 7V12L15 14" stroke="#22282c" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+      <div style={{ position: 'absolute', left: 329, top: 42, width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <img alt="" style={{ width: 32, height: 32 }} src={ClockIcon} />
       </div>
 
       {/* Portfolios description */}
@@ -426,7 +458,7 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
       {/* ÔöÇÔöÇ Portfolio Sub-Account Card (Group 4970) ÔöÇÔöÇ */}
       {/* Delayed Execution Available */}
       {/* Text: left=89.5, center-y=730 | Pills: top=728 | Figma node 3069:1734 */}
-      {(activeTab === 'Bonds' || activeTab === 'Equities' || activeTab === 'Equities CFDs' || activeTab === 'ETF CFDs') && <p style={{ pointerEvents: 'none', position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 12, color: '#455a64', textAlign: 'center', left: 89.5, top: 730, width: 141, letterSpacing: '-0.408px', lineHeight: '22px', whiteSpace: 'nowrap' }}>
+      {(activeTab === 'Bonds' || activeTab === 'Equities' || activeTab === 'Equities CFDs') && <p style={{ pointerEvents: 'none', position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 12, color: '#455a64', textAlign: 'center', left: 89.5, top: 730, width: 141, letterSpacing: '-0.408px', lineHeight: '22px', whiteSpace: 'nowrap' }}>
         {activeTab === 'Equities' || activeTab === 'Equities CFDs' ? 'Real & Near Real Time Execution Available' : 'Delayed Execution Available'}
       </p>}
       {/* Bond sub-account scroll indicator ÔÇö right side of Delayed Execution row */}
@@ -455,7 +487,7 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
       {activeTab !== 'Event Contracts' && <div style={{ position: 'absolute', display: 'contents', left: 19, top: 750 + cardOffset }}>
         {/* Card background */}
         {/* Card background */}
-        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: cardExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750 + cardOffset, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }} />
+        <div style={{ transform: 'translateX(-50%)', position: 'absolute', background: 'white', border: '2px solid #2254d4', height: tabExpanded ? 382 : 225, left: 'calc(50% - 0.5px)', borderRadius: 20, boxShadow: '0px 4px 4px 0px rgba(38,50,56,0.06)', top: 750 + cardOffset, width: 391, overflow: 'hidden', transition: 'height 0.3s ease' }} />
         {/* Full-card swipe overlay */}
         <div
           onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
@@ -475,7 +507,7 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
               else setEquityCfdIndex((i) => (i - 1 + equityCfdSubAccounts.length) % equityCfdSubAccounts.length);
             }
           }}
-          style={{ transform: 'translateX(-50%)', position: 'absolute', left: 'calc(50% - 0.5px)', top: 750 + cardOffset, width: 391, height: cardExpanded ? 382 : 225, borderRadius: 20, zIndex: 10, background: 'transparent', transition: 'height 0.3s ease' }}
+          style={{ transform: 'translateX(-50%)', position: 'absolute', left: 'calc(50% - 0.5px)', top: 750 + cardOffset, width: 391, height: tabExpanded ? 382 : 225, borderRadius: 20, zIndex: 10, background: 'transparent', transition: 'height 0.3s ease' }}
         />
 
         {/* Title ÔÇö top: 737 + cardOffset */}
@@ -571,12 +603,12 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
         <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 700, fontSize: 20, color: '#22282c', top: 867 + cardOffset, left: 37, lineHeight: 1.28 }}>{data.balance}</p>
 
         {/* See Less / See More toggle */}
-        {cardExpanded ? (
-          <div onClick={() => setCardExpanded(false)} style={{ position: 'absolute', left: 327, top: 857 + cardOffset, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', pointerEvents: 'auto' }}>
+        {tabExpanded ? (
+          <div onClick={(e) => { e.stopPropagation(); toggleTabExpanded(); }} style={{ position: 'absolute', left: 327, top: 857 + cardOffset, width: 80, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', pointerEvents: 'auto', zIndex: 20 }}>
             <p style={{ pointerEvents: 'none', fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 11, color: '#0033aa', textDecoration: 'underline', whiteSpace: 'nowrap', margin: 0 }}>See less</p>
           </div>
         ) : (
-          <div onClick={() => setCardExpanded(true)} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 26, borderRadius: 15, top: 906 + cardOffset, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', pointerEvents: 'auto' }}>
+          <div onClick={(e) => { e.stopPropagation(); toggleTabExpanded(); }} style={{ position: 'absolute', background: '#1410b1', height: 58, left: 26, borderRadius: 15, top: 906 + cardOffset, width: 379, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', pointerEvents: 'auto', zIndex: 20 }}>
             <p style={{ pointerEvents: 'none', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, fontSize: 14, color: 'white', margin: 0 }}>See more</p>
           </div>
         )}
@@ -585,13 +617,13 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
         <div style={{ position: 'absolute', transform: 'translateX(-50%) translateY(-50%)', left: 345.5, top: 778 + cardOffset, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: 85, letterSpacing: '-0.408px' }}>
           <span style={{ fontFamily: 'Urbanist, sans-serif', fontWeight: 500, fontSize: 10, color: '#455a64', lineHeight: '22px' }}>Holdings Floating PnL</span>
         </div>
-        <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 12, color: '#455a64', top: 782 + cardOffset, left: 358, lineHeight: '34px', height: 22, width: 44 }}>{data.floatingPnL}</p>
-        <div style={{ position: 'absolute', left: 343, top: 793 + cardOffset, width: 12, height: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Inter, sans-serif', fontWeight: 400, fontSize: 12, color: '#455a64', top: 782 + cardOffset, left: 343, lineHeight: '34px', height: 22, width: 44 }}>{data.floatingPnL}</p>
+        <div style={{ position: 'absolute', left: 328, top: 793 + cardOffset, width: 12, height: 12, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img alt="" style={{ width: 8, height: 8 }} src={Polygon19} />
         </div>
 
         {/* Expanded-only content */}
-        {cardExpanded && (<>
+        {tabExpanded && (<>
         {/* Upload button */}
         <div style={{ position: 'absolute', left: 48.375, top: 931.875 + cardOffset, width: 26.25, height: 26.25 }}>
           <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Vector5} />

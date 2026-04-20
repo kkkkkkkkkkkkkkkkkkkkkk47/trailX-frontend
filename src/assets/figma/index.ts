@@ -3,6 +3,7 @@ import Vector from './Vector.svg';
 import Rectangle1556 from './Rectangle1556.svg';
 import Group4802 from './Group4802.svg';
 import Group4941 from './Group4941.svg';
+import Group4942 from './Group 4942.png';
 import Ellipse371 from './Ellipse371.svg';
 import Vector1 from './Vector1.svg';
 import Arrow26 from './Arrow26.svg';
@@ -21,6 +22,8 @@ import Line7Stroke1 from './Line7Stroke1.svg';
 import IconCalendar from './IconCalendar.svg';
 import Group4794 from './Group4794.svg';
 import ClockIcon from './clock-icon.svg';
+import BellIcon from './bell-icon.png';
+import CollapseIcon from './collapse-icon.svg';
 import Vector5 from './Vector5.svg';
 import Arrow29 from './Arrow29.svg';
 import Ellipse372 from './Ellipse372.svg';
@@ -42,11 +45,11 @@ import PolandStocks from './poland-stocks.png';
 import FrankfurtStocks from './frankfurt-stocks.png';
 
 export {
-  Rectangle1040, Vector, Rectangle1556, Group4802, Group4941,
+  Rectangle1040, Vector, Rectangle1556, Group4802, Group4941, Group4942,
   Ellipse371, Vector1, Arrow26, Ellipse353, Ellipse354,
   Group4951, Line160, Ellipse243, Vector2, Group4957,
   Ellipse244, Vector3, Vector4, Line7Stroke, Line7Stroke1,
-  IconCalendar, Group4794, ClockIcon, Vector5, Arrow29, Ellipse372,
+  IconCalendar, Group4794, ClockIcon, BellIcon, CollapseIcon, Vector5, Arrow29, Ellipse372,
   Polygon19, Group4968, Vector6, Arrow28, Line7Stroke2,
   Group4987, NgxLogo, Group4984, DarkBgEllipse,
   UsStocks, LseStocks, EuronextStocks, JpxStocks, HkStocks, PolandStocks, FrankfurtStocks,
