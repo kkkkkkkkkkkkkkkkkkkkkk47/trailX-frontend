@@ -1,98 +1,266 @@
 import { useState } from 'react';
-import loginLogo from './assets/figma/vulueS.png';
-import loginLine from './assets/figma/login-line.svg';
-import loginDot from './assets/figma/login-dot.svg';
-import loginDotActive from './assets/figma/login-dot-active.svg';
-import loginEye from './assets/figma/login-eye.svg';
-import darkBgEllipse from './assets/figma/dark-bg-ellipse.svg';
+import MobileBg from './assets/figma/log in with the web app.png';
+
+// Asset URLs from Figma
+const imgBackgroundLogo = "https://www.figma.com/api/mcp/asset/f567b779-aaed-4273-8fcc-5c5d02f1971d";
+const imgLine17 = "https://www.figma.com/api/mcp/asset/26e886e6-3b83-48d5-8876-3204815c5a55";
+const imgEllipse334 = "https://www.figma.com/api/mcp/asset/25e06bb1-6fc8-4e34-a50f-2213bdeda122";
+const imgEllipse338 = "https://www.figma.com/api/mcp/asset/829c9675-0345-4b98-9a13-6c9ac54cd384";
+const imgVector = "https://www.figma.com/api/mcp/asset/b4f2ff7b-3c41-4444-bfb9-b25e364cc51d";
+const imgEvaArrowIosBackOutline1 = "https://www.figma.com/api/mcp/asset/767d17d2-7297-4da8-8d1e-fe97d28a7873";
+const imgEllipse9 = "https://www.figma.com/api/mcp/asset/f8d5db8c-a867-41d3-804c-b08f2b558ecc";
+
+// Original mobile design: 430x849
+// Horizontal: (px / 430) * 100 = vw
+// Vertical: (px / 849) * 100 = vh
 
 export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div style={{ background: '#1410b1', position: 'relative', width: 430, height: 849, overflow: 'hidden' }}>
-
-      {/* ── Background ellipse glow ── */}
-      <div style={{ position: 'absolute', left: 50, top: -111, width: 466, height: 296, transform: 'rotate(3.39deg)', pointerEvents: 'none', overflow: 'visible' }}>
-        <div style={{ position: 'absolute', inset: '-37.12% -22.17%' }}>
-          <img alt="" style={{ display: 'block', width: '100%', height: '100%' }} src={darkBgEllipse} />
-        </div>
-      </div>
-
-      {/* ── trailX heading ── */}
-      <p style={{ position: 'absolute', left: 36, top: 58, width: 223, height: 44, fontFamily: 'Urbanist, sans-serif', fontSize: 0, lineHeight: 0, color: 'white', margin: 0 }}>
-        <span style={{ fontWeight: 500, fontSize: 40, lineHeight: '1.28' }}>Trail</span>
-        <span style={{ fontWeight: 200, fontStyle: 'italic', fontSize: 40, lineHeight: '1.28' }}>X</span>
+    <div style={{ background: `url(${MobileBg}) left 0px top -30px/100% 100% no-repeat`, position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
+      
+      {/* Log In heading - left: 51px (11.86vw), top: 63px (7.42vh) */}
+      <p style={{ 
+        position: 'absolute', 
+        textTransform: 'capitalize',
+        fontFamily: "'Anek Odia', sans-serif", 
+        fontWeight: 600, 
+        lineHeight: 1.505, 
+        left: '11.86vw', 
+        fontSize: 'clamp(32px, 9.3vw, 40px)', 
+        color: 'white', 
+        textAlign: 'left', 
+        top: '7.42vh', 
+        margin: 0
+      }}>
+        Log In
       </p>
 
-      {/* ── Big diagonal stripe ── */}
-      <div style={{ position: 'absolute', left: 0, top: 120.5, width: 492.13, height: 731.78, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-        <div style={{ transform: 'rotate(33.77deg)', flexShrink: 0 }}>
-          <div style={{ background: 'white', height: 876.32, width: 6 }} />
+      {/* No Account yet? Sign Up - left: 51px (11.86vw), top: 173px (20.38vh) */}
+      <p style={{ 
+        position: 'absolute', 
+        fontFamily: "'Anek Odia', sans-serif", 
+        fontWeight: 500, 
+        lineHeight: 'normal', 
+        left: '11.86vw', 
+        color: '#99b2f1', 
+        fontSize: 13, 
+        textAlign: 'left', 
+        top: '20.38vh', 
+        margin: 0,
+        cursor: 'pointer'
+      }}>
+        No Account yet? Sign Up
+      </p>
+
+      {/* Background glow ellipse - left: 50px (11.63vw), top: -111px */}
+      <div style={{ position: 'absolute', display: 'flex', height: '34.81vh', alignItems: 'center', justifyContent: 'center', left: '11.63vw', top: '-13.08vh', width: '108.4vw' }}>
+        <div style={{ flexShrink: 0, transform: 'rotate(3.39deg)' }}>
+          <div style={{ height: '31.74vh', position: 'relative', width: '104.88vw' }}>
+            <div style={{ position: 'absolute', inset: '-37.12% -22.17%' }}>
+              <img alt="" style={{ display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={imgEllipse9} />
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* ── Blue stripe cluster ── */}
-      <div style={{ position: 'absolute', left: -7.11, top: 727.72, width: 108.75, height: 170.25, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-        <div style={{ transform: 'rotate(-31.81deg)' }}><div style={{ background: 'white', height: 196.63, width: 6 }} /></div>
-      </div>
-      <div style={{ position: 'absolute', left: -1, top: 740.45, width: 101.94, height: 162.93, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-        <div style={{ transform: 'rotate(-31.81deg)' }}><div style={{ background: '#6874eb', height: 190.72, width: 1.65 }} /></div>
-      </div>
-      <div style={{ position: 'absolute', left: -1, top: 742.45, width: 101.94, height: 162.93, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-        <div style={{ transform: 'rotate(-31.81deg)' }}><div style={{ background: '#3746cf', height: 190.72, width: 1.65 }} /></div>
-      </div>
-      <div style={{ position: 'absolute', left: -1, top: 745.45, width: 101.94, height: 162.93, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-        <div style={{ transform: 'rotate(-31.81deg)' }}><div style={{ background: '#2434b9', height: 190.72, width: 1.65 }} /></div>
-      </div>
-
-      {/* ── Account type selector ── */}
-      <div style={{ position: 'absolute', left: 36, top: 208, width: 360, height: 51, backdropFilter: 'blur(2px)', background: 'rgba(255,255,255,0.12)', borderRadius: 15 }} />
-      <p style={{ position: 'absolute', left: 57, top: 228, fontFamily: "'Anek Odia', sans-serif", fontWeight: 400, fontSize: 16, color: 'white', lineHeight: '1.28', margin: 0, whiteSpace: 'nowrap' }}>
+      {/* Account type selector - centered, top: 208px (24.5vh) */}
+      <div style={{ 
+        position: 'absolute',
+        transform: 'translateX(-50%)',
+        backdropFilter: 'blur(2px)', 
+        border: '1px solid white', 
+        height: 51, 
+        left: '50%', 
+        opacity: 0.7, 
+        borderRadius: 15, 
+        top: '24.5vh', 
+        width: 'clamp(300px, 83.72vw, 360px)' 
+      }} />
+      <p style={{ 
+        position: 'absolute', 
+        fontFamily: "'Anek Odia', sans-serif", 
+        fontWeight: 400, 
+        lineHeight: 1.28, 
+        left: '50%',
+        transform: 'translateX(-50%)',
+        fontSize: 16, 
+        textAlign: 'left', 
+        color: 'white', 
+        top: 'calc(24.5vh + 17px)', 
+        whiteSpace: 'nowrap',
+        margin: 0,
+        width: 'clamp(280px, 80vw, 340px)',
+        paddingLeft: 20
+      }}>
         Individual Account
       </p>
-      <div style={{ position: 'absolute', left: 362, top: 233, width: 13.5, height: 8.6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1L6.5 7L12 1" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+      {/* Dropdown arrow */}
+      <div style={{ position: 'absolute', right: 'calc(50% - 41.86vw + 20px)', top: 'calc(24.5vh + 13px)', width: 14, height: 14 }}>
+        <div style={{ transform: 'scaleX(-1) rotate(90deg)', width: '100%', height: '100%' }}>
+          <img alt="" style={{ display: 'block', width: '100%', height: '100%' }} src={imgEvaArrowIosBackOutline1} />
+        </div>
       </div>
 
-      {/* ── Email input ── */}
-      <div style={{ position: 'absolute', left: 36, top: 275, width: 360, height: 51, backdropFilter: 'blur(2px)', background: 'rgba(255,255,255,0.08)', border: '1px solid white', borderRadius: 15, opacity: 0.7 }} />
-      <p style={{ position: 'absolute', left: 58, top: 293, fontFamily: "'Anek Odia', sans-serif", fontWeight: 400, fontSize: 16, color: 'white', lineHeight: '1.28', margin: 0 }}>
+      {/* Email input - centered, top: 275px (32.39vh) */}
+      <div style={{ 
+        position: 'absolute',
+        transform: 'translateX(-50%)',
+        backdropFilter: 'blur(2px)', 
+        background: 'rgba(126,132,135,0.1)', 
+        border: '1px solid white', 
+        height: 51, 
+        left: '50%', 
+        opacity: 0.7, 
+        borderRadius: 15, 
+        top: '32.39vh', 
+        width: 'clamp(300px, 83.72vw, 360px)' 
+      }} />
+      <p style={{ 
+        position: 'absolute', 
+        fontFamily: "'Anek Odia', sans-serif", 
+        fontWeight: 400, 
+        lineHeight: 1.28, 
+        left: '50%',
+        transform: 'translateX(-50%)',
+        fontSize: 16, 
+        color: 'white', 
+        textAlign: 'left', 
+        top: 'calc(32.39vh + 17px)', 
+        width: 'clamp(280px, 80vw, 340px)',
+        paddingLeft: 20,
+        margin: 0
+      }}>
         Ekwey@gmail.com
       </p>
-      <div style={{ position: 'absolute', left: 188, top: 290, width: 1, height: 20 }}>
-        <img alt="" style={{ width: '100%', height: '100%' }} src={loginLine} />
+
+      {/* Password input - centered, top: 342px (40.28vh) */}
+      <div style={{ 
+        position: 'absolute',
+        transform: 'translateX(-50%)',
+        backdropFilter: 'blur(2px)', 
+        background: 'rgba(119,123,125,0.1)', 
+        border: '1px solid white', 
+        height: 51, 
+        left: '50%', 
+        opacity: 0.7, 
+        borderRadius: 15, 
+        top: '40.28vh', 
+        width: 'clamp(300px, 83.72vw, 360px)' 
+      }} />
+      
+      {/* Password dots - inside password input */}
+      <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', top: 'calc(40.28vh + 21.5px)', display: 'flex', gap: '17px', width: 'clamp(280px, 80vw, 340px)', paddingLeft: 20 }}>
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <div key={i} style={{ width: 8, height: 8 }}>
+            <img alt="" style={{ display: 'block', width: '100%', height: '100%' }} src={i === 4 ? imgEllipse338 : imgEllipse334} />
+          </div>
+        ))}
+      </div>
+      
+      {/* Eye icon - right side of password input */}
+      <div 
+        style={{ position: 'absolute', height: 17, right: 'calc(50% - 41.86vw + 20px)', top: 'calc(40.28vh + 17px)', width: 19.174, cursor: 'pointer' }}
+        onClick={() => setShowPassword(!showPassword)}
+      >
+        <img alt="" style={{ position: 'absolute', display: 'block', inset: 0, maxWidth: 'none', width: '100%', height: '100%' }} src={imgVector} />
       </div>
 
-      {/* ── Password input ── */}
-      <div style={{ position: 'absolute', left: 36, top: 342, width: 360, height: 51, backdropFilter: 'blur(2px)', background: 'rgba(255,255,255,0.08)', border: '1px solid white', borderRadius: 15, opacity: 0.7 }} />
-      {[58, 75, 92, 109, 126, 143].map((x, i) => (
-        <div key={i} style={{ position: 'absolute', left: x, top: 357, width: 8, height: 8, filter: 'brightness(0) invert(1)' }}>
-          <img alt="" style={{ width: '100%', height: '100%' }} src={i === 4 ? loginDotActive : loginDot} />
-        </div>
-      ))}
-      <div style={{ position: 'absolute', left: 353, top: 359, width: 19.17, height: 17, cursor: 'pointer', filter: 'brightness(0) invert(1)' }} onClick={() => setShowPassword(!showPassword)}>
-        <img alt="" style={{ position: 'absolute', width: '100%', height: '100%' }} src={loginEye} />
-      </div>
-
-      {/* ── Forgot Password ── */}
-      <p style={{ position: 'absolute', left: 159, top: 423, width: 116, fontFamily: "'Anek Odia', sans-serif", fontWeight: 500, fontSize: 13, color: 'rgba(255,255,255,0.7)', lineHeight: '1.28', margin: 0, cursor: 'pointer' }}>
+      {/* Forgot Password - centered, top: 439px (51.71vh) */}
+      <p style={{ 
+        position: 'absolute', 
+        fontFamily: "'Anek Odia', sans-serif", 
+        fontWeight: 500, 
+        lineHeight: 'normal', 
+        left: '50%',
+        transform: 'translateX(-50%)',
+        color: '#4e74d6', 
+        fontSize: 13, 
+        textAlign: 'center', 
+        top: '51.71vh', 
+        margin: 0,
+        cursor: 'pointer'
+      }}>
         Forgot Password?
       </p>
 
-      {/* ── Confirm button ── */}
-      <div style={{ position: 'absolute', left: 36, top: 479, width: 360, height: 72, background: 'linear-gradient(to bottom, #3a36dd, #9f9dff)', border: '1px solid #2254d4', borderRadius: 25 }} />
-      <div onClick={onLogin} style={{ position: 'absolute', left: 36, top: 479, width: 360, height: 72, background: 'white', border: '1px solid white', borderRadius: 25, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-        <span style={{ fontFamily: "'Anek Odia', sans-serif", fontWeight: 400, fontSize: 20, color: '#1410b1', lineHeight: '22px' }}>Confirm</span>
-      </div>
+      {/* Confirm button background gradient (behind) - centered, top: 479px (56.42vh) */}
+      <div style={{ 
+        position: 'absolute', 
+        background: 'linear-gradient(to bottom, #3a36dd, #9f9dff)', 
+        border: '1px solid #2254d4', 
+        height: 72, 
+        left: '50%',
+        transform: 'translateX(-50%)',
+        borderRadius: 25, 
+        top: '56.42vh', 
+        width: 'clamp(240px, 70vw, 300px)'
+      }} />
+      <p style={{ 
+        position: 'absolute', 
+        fontFamily: "'Anek Odia', sans-serif", 
+        fontWeight: 400, 
+        lineHeight: '22px', 
+        left: '50%',
+        transform: 'translateX(-50%)',
+        color: '#bcbbbb', 
+        fontSize: 20, 
+        textAlign: 'center', 
+        top: 'calc(56.42vh + 28px)', 
+        margin: 0
+      }}>
+        Confirm
+      </p>
 
-      {/* ── VULUE logo + wordmark ── */}
-      <div style={{ position: 'absolute', left: 174, top: 761, width: 27, height: 27 }}>
-        <img alt="Vulue Logo" loading="eager" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} src={loginLogo} />
+      {/* Confirm button (front white) - centered, top: 479px (56.42vh) */}
+      <div style={{ 
+        position: 'absolute', 
+        background: 'white', 
+        border: '1px solid #6889dc', 
+        height: 72, 
+        left: '50%',
+        transform: 'translateX(-50%)',
+        borderRadius: 25, 
+        top: '56.42vh', 
+        width: 'clamp(300px, 83.72vw, 360px)',
+        cursor: 'pointer'
+      }}
+      onClick={onLogin}
+      />
+      <p style={{ 
+        position: 'absolute', 
+        fontFamily: "'Anek Odia', sans-serif", 
+        fontWeight: 400, 
+        lineHeight: '22px', 
+        left: '50%',
+        transform: 'translateX(-50%)',
+        color: '#1410b1', 
+        fontSize: 20, 
+        textAlign: 'center', 
+        top: 'calc(56.42vh + 28px)', 
+        margin: 0,
+        pointerEvents: 'none'
+      }}>
+        Confirm
+      </p>
+
+      {/* VULUE logo and text - left: 174px (40.47vw), top: 761px (89.64vh) - moved up 30px */}
+      <div style={{ position: 'absolute', left: '40.47vw', width: 27, height: 27, top: 'calc(89.64vh - 30px)' }}>
+        <img alt="" style={{ position: 'absolute', inset: 0, maxWidth: 'none', objectFit: 'cover', pointerEvents: 'none', width: '100%', height: '100%' }} src={imgBackgroundLogo} />
       </div>
-      <p style={{ position: 'absolute', left: 200, top: 764, width: 57, height: 25, fontFamily: "'Anek Odia', sans-serif", fontWeight: 200, fontSize: 20, color: 'white', lineHeight: '1.28', margin: 0 }}>
+      <p style={{ 
+        position: 'absolute', 
+        fontFamily: "'Anek Odia', sans-serif", 
+        fontWeight: 200, 
+        lineHeight: 1.28, 
+        left: '46.51vw', 
+        fontSize: 20, 
+        textAlign: 'left', 
+        color: 'white', 
+        top: 'calc(90vh - 30px)', 
+        margin: 0
+      }}>
         VULUE
       </p>
 

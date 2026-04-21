@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
 import VuluePage from './VuluePage';
 import LoginPage from './LoginPage';
+import DesktopLoginPage from './DesktopLoginPage';
 
 const DESIGN_WIDTH = 430;
 const DESIGN_HEIGHT = 1698;
 const LOGIN_HEIGHT = 849;
+const DESKTOP_LOGIN_WIDTH = 1447;
+const DESKTOP_LOGIN_HEIGHT = 855;
+const DESKTOP_BREAKPOINT = 480;
 
 function ScaledPage({ children, designHeight, scrollable = false, bg = '#f7fafb' }: { children: React.ReactNode; designHeight: number; scrollable?: boolean; bg?: string }) {
   const [vw, setVw] = useState(window.innerWidth);
@@ -62,17 +66,21 @@ function LoginFullScreen({ onLogin }: { onLogin: () => void }) {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  const isMobile = vw <= 480;
+  const isDesktop = vw >= DESKTOP_BREAKPOINT;
 
-  // Mobile: stretch to fill screen. Desktop: center at natural size.
-  const scaleX = isMobile ? vw / 430 : 1;
-  const scaleY = isMobile ? vh / 849 : 1;
-
-  return (
-    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', background: '#ffffff', display: isMobile ? 'block' : 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ width: 430, height: 849, transformOrigin: 'top left', transform: isMobile ? `scale(${scaleX}, ${scaleY})` : 'none', borderRadius: isMobile ? 0 : 24, overflow: 'hidden', flexShrink: 0 }}>
-        <LoginPage onLogin={onLogin} />
+  if (isDesktop) {
+    // Desktop: full viewport, no scaling
+    return (
+      <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
+        <DesktopLoginPage onLogin={onLogin} />
       </div>
+    );
+  }
+
+  // Mobile: full viewport, no scaling
+  return (
+    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
+      <LoginPage onLogin={onLogin} />
     </div>
   );
 }
