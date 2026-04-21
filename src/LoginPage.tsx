@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import MobileBg from './assets/figma/log in with the web app.png';
+import DropdownArrowWhite from './assets/figma/dropdown-arrow-white.svg';
 
 // Asset URLs from Figma
 const imgBackgroundLogo = "https://www.figma.com/api/mcp/asset/f567b779-aaed-4273-8fcc-5c5d02f1971d";
 const imgEllipse334 = "https://www.figma.com/api/mcp/asset/25e06bb1-6fc8-4e34-a50f-2213bdeda122";
 const imgEllipse338 = "https://www.figma.com/api/mcp/asset/829c9675-0345-4b98-9a13-6c9ac54cd384";
 const imgVector = "https://www.figma.com/api/mcp/asset/b4f2ff7b-3c41-4444-bfb9-b25e364cc51d";
-const imgEvaArrowIosBackOutline1 = "https://www.figma.com/api/mcp/asset/767d17d2-7297-4da8-8d1e-fe97d28a7873";
 const imgEllipse9 = "https://www.figma.com/api/mcp/asset/f8d5db8c-a867-41d3-804c-b08f2b558ecc";
 
 // Original mobile design: 430x849
@@ -95,11 +95,9 @@ export default function LoginPage({ onLogin }: { onLogin?: () => void }) {
       }}>
         Individual Account
       </p>
-      {/* Dropdown arrow */}
-      <div style={{ position: 'absolute', right: 'calc(50% - 41.86vw + 20px)', top: 'calc(24.5vh + 13px)', width: 14, height: 14 }}>
-        <div style={{ transform: 'scaleX(-1) rotate(90deg)', width: '100%', height: '100%' }}>
-          <img alt="" style={{ display: 'block', width: '100%', height: '100%' }} src={imgEvaArrowIosBackOutline1} />
-        </div>
+      {/* Dropdown arrow - clean SVG, 2x bigger */}
+      <div style={{ position: 'absolute', right: 'calc(50% - 41.86vw + 20px)', top: 'calc(24.5vh + 11.5px)', width: 28, height: 28 }}>
+        <img src={DropdownArrowWhite} alt="" style={{ width: '100%', height: '100%' }} />
       </div>
 
       {/* Email input - centered, top: 275px (32.39vh) */}
