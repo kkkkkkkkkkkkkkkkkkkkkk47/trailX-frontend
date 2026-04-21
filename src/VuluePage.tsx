@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import {
   Rectangle1040, Vector, Rectangle1556, Group4802, Group4941, Group4942,
-  Ellipse371, Arrow26, Ellipse353, Ellipse354,
+  Arrow26, Ellipse353, Ellipse354,
   Group4951, Ellipse243, Vector2, Group4957,
   Line7Stroke, Line7Stroke1,
   IconCalendar, Group4794, ClockIcon, BellIcon, CollapseIcon, Vector5, Arrow29, Ellipse372,
@@ -219,11 +219,6 @@ export default function VuluePage({ onTabChange, onEventExpandedChange }: { onTa
         </div>
       </div>
       <p style={{ pointerEvents: 'none', position: 'absolute', fontFamily: 'Urbanist, sans-serif', fontWeight: 400, height: 12, lineHeight: 1.29, left: 'calc(50% + 127px)', fontSize: 13, color: '#ebf0ff', top: 321, width: 47 }}>Details</p>
-
-      {/* Notification dot */}
-      <div style={{ position: 'absolute', left: 377.52, width: 3, height: 3, top: 60.91 }}>
-        <img alt="" style={{ position: 'absolute', display: 'block', maxWidth: 'none', width: '100%', height: '100%' }} src={Ellipse371} />
-      </div>
 
       {/* Bell icon */}
       <img alt="" style={{ position: 'absolute', left: 372, top: 38, width: 48, height: 50 }} src={BellIcon} />
