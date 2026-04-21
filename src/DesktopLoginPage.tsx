@@ -6,11 +6,7 @@ import DropdownArrowWhite from './assets/figma/dropdown-arrow-white.svg';
 // Asset URLs from Figma
 const imgBackgroundLogo = "https://www.figma.com/api/mcp/asset/334917ef-26ba-400f-8f1e-cf0298f164cc";
 const imgArrow15 = "https://www.figma.com/api/mcp/asset/ed763e9c-ff78-4ef1-b599-64fae883d5cc";
-const imgLine17 = "https://www.figma.com/api/mcp/asset/be816206-9070-45f5-8d4e-512c5c9e9f37";
-const imgEllipse334 = "https://www.figma.com/api/mcp/asset/8768a667-d412-424c-b414-fb70746bb784";
-const imgEllipse338 = "https://www.figma.com/api/mcp/asset/4647585c-5847-4672-b4af-6d5721fe0228";
 const imgVector = "https://www.figma.com/api/mcp/asset/e935f96d-55b7-4f47-be0c-911aa921fe39";
-const imgEvaArrowIosBackOutline1 = "https://www.figma.com/api/mcp/asset/89b8d258-5d23-43b6-8ae5-51a0e04717f1";
 
 // Original Figma design: 1447x855
 // Convert pixel positions to viewport percentages

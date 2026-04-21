@@ -3,7 +3,6 @@ import MobileBg from './assets/figma/log in with the web app.png';
 
 // Asset URLs from Figma
 const imgBackgroundLogo = "https://www.figma.com/api/mcp/asset/f567b779-aaed-4273-8fcc-5c5d02f1971d";
-const imgLine17 = "https://www.figma.com/api/mcp/asset/26e886e6-3b83-48d5-8876-3204815c5a55";
 const imgEllipse334 = "https://www.figma.com/api/mcp/asset/25e06bb1-6fc8-4e34-a50f-2213bdeda122";
 const imgEllipse338 = "https://www.figma.com/api/mcp/asset/829c9675-0345-4b98-9a13-6c9ac54cd384";
 const imgVector = "https://www.figma.com/api/mcp/asset/b4f2ff7b-3c41-4444-bfb9-b25e364cc51d";

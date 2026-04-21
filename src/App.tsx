@@ -6,8 +6,6 @@ import DesktopLoginPage from './DesktopLoginPage';
 const DESIGN_WIDTH = 430;
 const DESIGN_HEIGHT = 1698;
 const LOGIN_HEIGHT = 849;
-const DESKTOP_LOGIN_WIDTH = 1447;
-const DESKTOP_LOGIN_HEIGHT = 855;
 const DESKTOP_BREAKPOINT = 480;
 
 function ScaledPage({ children, designHeight, scrollable = false, bg = '#f7fafb' }: { children: React.ReactNode; designHeight: number; scrollable?: boolean; bg?: string }) {
@@ -58,10 +56,9 @@ export default function App() {
 
 function LoginFullScreen({ onLogin }: { onLogin: () => void }) {
   const [vw, setVw] = useState(window.innerWidth);
-  const [vh, setVh] = useState(window.innerHeight);
 
   useEffect(() => {
-    const onResize = () => { setVw(window.innerWidth); setVh(window.innerHeight); };
+    const onResize = () => { setVw(window.innerWidth); };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
